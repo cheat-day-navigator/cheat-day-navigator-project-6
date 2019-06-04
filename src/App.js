@@ -2,6 +2,31 @@ import React, { Component } from 'react';
 import './App.css';
 
 class App extends Component {
+  constructor() {
+    super();
+    // Create an empty initial state;
+    this.state = {
+      NutriData: [],
+      userInput: '',
+    }
+  }
+
+  // Binding the user's input to create controlled information
+  handleChange = (event) => {
+    this.setState({
+      userInput: event.target.value,
+    })
+    console.log(this.state.userInput)
+  }
+
+
+  // Create an event listener for user input
+  handleClick = (event) => {
+    event.preventDefault();
+  }
+
+
+
   render() {
     return (
       <div className="App">
@@ -21,10 +46,10 @@ class App extends Component {
         <main>
           <form>
             <label htmlFor="search">Look up your favourite foods!</label>
-            <input type="text" id="search" placeholder="e.g. Chicken nuggets" />
+            <input type="text" id="search" placeholder="e.g. Chicken nuggets" onChange = {this.handleChange} />
             <div className="buttons">
               <button type="submit">Compare</button>
-              <button type="submit">Submit</button>
+              <button type="submit" onClick = {this.handleClick}>Submit</button>
             </div>
           </form>
           <div className="gallery-field">
