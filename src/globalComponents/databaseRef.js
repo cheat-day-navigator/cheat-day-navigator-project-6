@@ -6,7 +6,7 @@ const ReferParams = () => {
     url: `../localData/params.json`,
     dataResponse: `json`,
   }).then(response => {
-    return (response)
+    return(response)
   })
 }
 
