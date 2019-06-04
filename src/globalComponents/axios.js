@@ -4,8 +4,8 @@ const MakeCall = (appQuery) => {
 
   const url = `https://trackapi.nutritionix.com/v2/search/instant`
 
-  // const appKey = YOUR API KEY HERE BETWEEN SINGLE QUOTES
-  // const appId = YOUR APP ID HERE BETWEEN SINGLE QUOTES
+  const appKey = "fac5feffeb9338a324d4db92881fe381"
+  const appId = "c4b8e395"
 
   axios({
     method: `GET`,

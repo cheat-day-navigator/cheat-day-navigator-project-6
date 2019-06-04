@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
+import MakeCall from './globalComponents/axios'
 
 class App extends Component {
   constructor() {
@@ -16,13 +17,20 @@ class App extends Component {
     this.setState({
       userInput: event.target.value,
     })
-    console.log(this.state.userInput)
+    const output = this.state.userInput;
+    console.log(output)
   }
 
 
   // Create an event listener for user input
   handleClick = (event) => {
     event.preventDefault();
+
+    this.setState({
+      NutriData: MakeCall(this.state.userInput)
+    });
+
+    console.log(this.state.NutriData);
   }
 
 
