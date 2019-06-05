@@ -44,7 +44,7 @@ class InputForm extends Component {
     }).then(result => {
       let queryResult = result.data.branded
       this.setState({ data: queryResult })
-      this.props.data = queryResult
+      this.props.data(queryResult)
     })
   }
 
