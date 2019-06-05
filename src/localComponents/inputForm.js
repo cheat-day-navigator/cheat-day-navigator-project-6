@@ -3,8 +3,8 @@ import axios from 'axios'
 
 class InputForm extends Component {
 
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
     this.state = {
       url: 'https://trackapi.nutritionix.com/v2/search/instant',
       appKey: "aca04b0312df7f5382fe783ade15b363",
@@ -14,12 +14,17 @@ class InputForm extends Component {
     }
   }
 
+  handleKeyPress = (e) => {
+    if (e.which === 13) {
+      this.handleClick(e)
+    }
+  }
+
   // Binding the user's input to create controlled information
   handleChange = (event) => {
     this.setState({
       userInput: event.target.value,
     })
-    console.log(this.state.userInput)
   }
 
   // Create an event listener for user input
@@ -37,9 +42,9 @@ class InputForm extends Component {
         'x-app-key': this.state.appKey
       }
     }).then(result => {
-      let queryResult = result.data
+      let queryResult = result.data.branded
       this.setState({ data: queryResult })
-      console.log(this.state.data)
+      this.props.data = queryResult
     })
   }
 
@@ -47,7 +52,7 @@ class InputForm extends Component {
     return (
       <form>
         <label htmlFor="search">Look up your favourite foods!</label>
-        <input type="text" id="search" placeholder="e.g. Chicken nuggets" onChange={this.handleChange} />
+        <input type="text" id="search" placeholder="e.g. Chicken nuggets" onChange={this.handleChange} onKeyDown={this.handleKeyPress} />
         <div className="buttons">
           <button type="submit">Compare</button>
           <button type="submit" onClick={this.handleClick}>Submit</button>

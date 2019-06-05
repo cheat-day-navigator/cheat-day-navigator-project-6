@@ -7,9 +7,13 @@ class App extends Component {
     super();
     // Create an empty initial state;
     this.state = {
-      NutriData: [],
-      userInput: '',
+      nutriData: {},
+      userInput: ''
     }
+  }
+
+  callBackData = (d) => {
+    this.setState({nutriData : d})
   }
 
   render() {
@@ -29,7 +33,7 @@ class App extends Component {
           <h3>Learn about all your favourite foods!</h3>
         </header>
         <main>
-        <InputForm />
+        <InputForm data={this.callBackData}/>
           <div className="gallery-field">
             <button>Back</button>
             <div className="item-card">
