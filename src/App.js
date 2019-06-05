@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
-import InputForm from './localComponents/inputForm'
+import InputForm from './localComponents/inputForm';
+import Header from './localComponents/Header.js';
 
 class App extends Component {
   constructor() {
@@ -13,27 +14,15 @@ class App extends Component {
   }
 
   callBackData = (d) => {
-    this.setState({nutriData : d})
+    this.setState({ nutriData: d })
   }
 
   render() {
     return (
       <div className="App">
-        <header>
-          <nav>
-            <h4>Superfood Navigation</h4>
-            <ul className="menu">
-              <li>Saved Items</li>
-              <ul className="drop-down">
-                <li>Saved Item</li>
-              </ul>
-            </ul>
-          </nav>
-          <h1>Superfood Navigation</h1>
-          <h3>Learn about all your favourite foods!</h3>
-        </header>
+        <Header />
         <main>
-        <InputForm data={this.callBackData}/>
+          <InputForm data={this.callBackData} />
           <div className="gallery-field">
             <button>Back</button>
             <div className="item-card">
