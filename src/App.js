@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
+import InputForm from './localComponents/inputForm'
 
 class App extends Component {
   constructor() {
@@ -10,22 +11,6 @@ class App extends Component {
       userInput: '',
     }
   }
-
-  // Binding the user's input to create controlled information
-  handleChange = (event) => {
-    this.setState({
-      userInput: event.target.value,
-    })
-    console.log(this.state.userInput)
-  }
-
-
-  // Create an event listener for user input
-  handleClick = (event) => {
-    event.preventDefault();
-  }
-
-
 
   render() {
     return (
@@ -44,14 +29,7 @@ class App extends Component {
           <h3>Learn about all your favourite foods!</h3>
         </header>
         <main>
-          <form>
-            <label htmlFor="search">Look up your favourite foods!</label>
-            <input type="text" id="search" placeholder="e.g. Chicken nuggets" onChange = {this.handleChange} />
-            <div className="buttons">
-              <button type="submit">Compare</button>
-              <button type="submit" onClick = {this.handleClick}>Submit</button>
-            </div>
-          </form>
+        <InputForm />
           <div className="gallery-field">
             <button>Back</button>
             <div className="item-card">
