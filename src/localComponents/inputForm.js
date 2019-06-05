@@ -42,7 +42,7 @@ class InputForm extends Component {
         'x-app-key': this.state.appKey
       }
     }).then(result => {
-      let queryResult = result.data.branded
+      let queryResult = result.data
       this.setState({ data: queryResult })
       this.props.data(queryResult)
     })
