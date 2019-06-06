@@ -1,6 +1,6 @@
 const APIData = {
-  appKey: "aca04b0312df7f5382fe783ade15b363",
-  appId: "b3b57eaf"
+  appKey: "924c1585e06dff53ab7a3ccac32d2244",
+  appId: "8a9ba709"
 }
 
 export default APIData
