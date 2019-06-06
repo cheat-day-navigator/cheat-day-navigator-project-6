@@ -1,10 +1,20 @@
 import React, { Component } from 'react';
+import firebase from "./globalComponents/firebase"
+
 
 class NutritionCard extends Component {
 
+    handleClick = (e) => {
+        e.preventDefault();
+        const dbRef = firebase.database().ref();
+        dbRef.push(this.props.data)
+
+
+    }   
+
 
     render() {
-        console.log(this.props.data)
+        // console.log(this.props.data)
         return (
             <div className="gallery-field">
                 <div className="item-card">
@@ -20,6 +30,7 @@ class NutritionCard extends Component {
                             <li><p>Vitamin A</p><p>value</p></li>
                             <li><p>Vitamin A</p><p>value</p></li>
                         </ul>
+                        <button onClick={this.handleClick}>Save</button>
                     </div>
                 </div>
             </div>
