@@ -1,37 +1,26 @@
 import React, { Component } from 'react';
 
 class NutritionCard extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-
-        }
-    }
 
 
     render() {
+        console.log(this.props.data)
         return (
-            <div>
-                {/* {this.props.data.map(food => {
-                    return console.log(food);
-                })} */}
-                <div className="gallery-field">
-                    <button>Back</button>
-                    <div className="item-card">
-                        <img src="https://fillmurray.com/200/300" alt="" />
-                        <button>Read More</button>
-                        <div className="nutrition-card">
-                            <h3>Nutrition Facts</h3>
-                            <p className="line">1 serving</p>
-                            <ul>
-                                <li><p>Vitamin A</p><p>value</p></li>
-                                <li><p>Vitamin A</p><p>value</p></li>
-                                <li><p>Vitamin A</p><p>value</p></li>
-                                <li><p>Vitamin A</p><p>value</p></li>
-                            </ul>
-                        </div>
+            <div className="gallery-field">
+                <div className="item-card">
+                    <img src={this.props.data && this.props.data[0].photo.thumb} alt="" />
+                    <button>Read More</button>
+                    <div className="nutrition-card">
+                        <h2>{this.props.data && this.props.data[0].food_name}</h2>
+                        <h3>Nutrition Facts</h3>
+                        <p className="line">{this.props.data && this.props.data[0].serving_qty} {this.props.data && this.props.data[0].serving_unit}</p>
+                        <ul>
+                            <li><p>Vitamin A</p><p>value</p></li>
+                            <li><p>Vitamin A</p><p>value</p></li>
+                            <li><p>Vitamin A</p><p>value</p></li>
+                            <li><p>Vitamin A</p><p>value</p></li>
+                        </ul>
                     </div>
-                    <button>Next</button>
                 </div>
             </div>
         )

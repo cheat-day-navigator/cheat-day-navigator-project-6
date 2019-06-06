@@ -228,6 +228,16 @@ form .buttons {
   margin-left: 10px;
 }
 
+.nutrition-card h2 {
+  text-transform: capitalize;
+  font-size: 1.3rem;
+  margin-bottom: 5px;
+}
+
+.nutrition-card p {
+  padding-bottom: 3px;
+}
+
 .nutrition-card .line {
   border-bottom: 6px solid black;
 }

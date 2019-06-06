@@ -42,7 +42,7 @@ class App extends Component {
             toggleCard={this.showNutritionCard}
           />
           {this.state.nutritionVisible ? <NutritionCard
-            data={this.state.nutriData.branded}
+            data={this.state.nutriData.common}
           /> : null}
         </main>
         <footer>
