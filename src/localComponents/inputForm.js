@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import axios from 'axios'
+import APIData from './apiData'
 
 class InputForm extends Component {
 
@@ -7,8 +8,8 @@ class InputForm extends Component {
     super();
     this.state = {
       url: 'https://trackapi.nutritionix.com/v2/search/instant',
-      appKey: "aca04b0312df7f5382fe783ade15b363",
-      appId: "b3b57eaf",
+      appKey: APIData.appkey,
+      appId: APIData.appid,
       data: {},
       userInput: ''
     }
@@ -43,7 +44,9 @@ class InputForm extends Component {
       }
     }).then(result => {
       let queryResult = result.data
-      this.setState({ data: queryResult })
+      this.setState({ data: queryResult }, () => {
+        this.props.toggleCard();
+      })
       this.props.data(queryResult)
     })
   }
