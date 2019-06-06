@@ -7,8 +7,8 @@ class InputForm extends Component {
     super();
     this.state = {
       url: 'https://trackapi.nutritionix.com/v2/search/instant',
-      appKey: "aca04b0312df7f5382fe783ade15b363",
-      appId: "b3b57eaf",
+      appKey: "fac5feffeb9338a324d4db92881fe381",
+      appId: "c4b8e395",
       data: {},
       userInput: ''
     }

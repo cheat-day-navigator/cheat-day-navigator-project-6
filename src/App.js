@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import InputForm from './localComponents/inputForm';
 import Header from './localComponents/Header.js';
+import NutritionCard from './NutritionCard.js';
 
 class App extends Component {
   constructor() {
@@ -28,6 +29,7 @@ class App extends Component {
             <div className="item-card">
               <img src="https://fillmurray.com/200/300" alt="" />
               <button>Read More</button>
+              <NutritionCard data ={this.state.nutriData.branded}/>  
               <div className="nutrition-card">
                 <h3>Nutrition Facts</h3>
                 <p className="line">1 serving</p>
