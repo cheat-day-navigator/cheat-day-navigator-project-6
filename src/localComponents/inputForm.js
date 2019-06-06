@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import axios from 'axios'
+import APIData from './apiData'
 
 class InputForm extends Component {
 
@@ -7,13 +8,22 @@ class InputForm extends Component {
     super();
     this.state = {
       url: 'https://trackapi.nutritionix.com/v2/search/instant',
-      appKey: "fac5feffeb9338a324d4db92881fe381",
-      appId: "c4b8e395",
+      appKey: '',
+      appId: '',
       data: {},
       userInput: ''
     }
   }
 
+  componentDidMount() {
+    const appKeyGrab = APIData.appKey
+    const appIdGrab = APIData.appId
+    this.setState({
+      appKey: appKeyGrab,
+      appId: appIdGrab
+    })
+  }
+    
   handleKeyPress = (e) => {
     if (e.which === 13) {
       this.handleClick(e)
@@ -49,7 +59,6 @@ class InputForm extends Component {
       this.props.data(queryResult)
     })
   }
-
 
   render() {
     return (
