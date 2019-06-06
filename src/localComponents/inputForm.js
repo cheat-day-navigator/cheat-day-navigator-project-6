@@ -43,10 +43,13 @@ class InputForm extends Component {
       }
     }).then(result => {
       let queryResult = result.data
-      this.setState({ data: queryResult })
+      this.setState({ data: queryResult }, () => {
+        this.props.toggleCard();
+      })
       this.props.data(queryResult)
     })
   }
+
 
   render() {
     return (
