@@ -8,13 +8,22 @@ class InputForm extends Component {
     super();
     this.state = {
       url: 'https://trackapi.nutritionix.com/v2/search/instant',
-      appKey: APIData.appkey,
-      appId: APIData.appid,
+      appKey: '',
+      appId: '',
       data: {},
       userInput: ''
     }
   }
 
+  componentDidMount() {
+    const appKeyGrab = APIData.appKey
+    const appIdGrab = APIData.appId
+    this.setState({
+      appKey: appKeyGrab,
+      appId: appIdGrab
+    })
+  }
+    
   handleKeyPress = (e) => {
     if (e.which === 13) {
       this.handleClick(e)
