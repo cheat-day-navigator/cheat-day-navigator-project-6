@@ -4,7 +4,11 @@
   "private": true,
   "dependencies": {
     "axios": "^0.19.0",
+<<<<<<< HEAD
     "firebase": "^6.1.0",
+=======
+    "firebase": "^6.1.1",
+>>>>>>> 61d0b1995ee507b1644d8c43d68385ea52dfe343
     "node-sass": "^4.12.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
