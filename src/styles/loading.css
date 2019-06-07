@@ -1,167 +1,169 @@
-    .modal-loading {
-      background-color: rgba(255, 255, 255, .5);
-      height: 100vh;
-      width: 100vw;
-      pointer-events: none;
-      user-select: none;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
+.modal-loading {
+  background-color: rgba(255, 255, 255, 0.5);
+  height: 100vh;
+  width: 100vw;
+  user-select: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  z-index: 9998;
+}
 
-    .text-loading {
-      color: red;
-      font-size: 30px;
-      position: relative;
-      top: 60px;
-    }
+.text-loading {
+  color: red;
+  font-size: 30px;
+  position: relative;
+  top: 60px;
+}
 
-    .container-loading {
-      border-radius: 15px;
-      width: 300px;
-      height: 300px;
-      position: relative;
-      display:flex;
-      justify-content:center;
-      align-items:center;
-    }
+.container-loading {
+  border-radius: 55px;
+  width: 300px;
+  height: 300px;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(255, 255, 255, 0.7);
+}
 
-    .dot-loading {
-      animation: dots-loading forwards infinite normal 3s;
-      opacity: 1;
-    }
+.dot-loading {
+  animation: dots-loading forwards infinite normal 3s;
+  opacity: 1;
+}
 
-    .dot2-loading {
-      animation-delay: 1s;
-    }
+.dot2-loading {
+  animation-delay: 1s;
+}
 
-    .dot3-loading {
-      animation-delay: 2s;
-    }
+.dot3-loading {
+  animation-delay: 2s;
+}
 
-    .bar-loading {
-      height: 20px;
-      width: 10px;
-      top: 50%;
-      background-color: #f00;
-      position: absolute;
-      left: calc(50% - 5px);
-      transform-origin: 5px -40px;
-      animation: bar-loading both infinite normal 3s cubic-bezier(.44, -0.31, .54, .9);
-    }
+.bar-loading {
+  height: 20px;
+  width: 10px;
+  top: 50%;
+  background-color: #9f2718;
+  position: absolute;
+  left: calc(50% - 5px);
+  transform-origin: 5px -40px;
+  animation: bar-loading both infinite normal 3s cubic-bezier(0.44, -0.31, 0.54, 0.9);
+}
 
-    .bar1-loading {
-      transform: rotate(0deg);
-    }
+.bar1-loading {
+  transform: rotate(0deg);
+}
 
-    .bar2-loading {
-      transform: rotate(24deg);
-      animation-delay: .2s;
-    }
+.bar2-loading {
+  transform: rotate(24deg);
+  animation-delay: 0.2s;
+}
 
-    .bar3-loading {
-      transform: rotate(48deg);
-      animation-delay: .4s;
-    }
+.bar3-loading {
+  transform: rotate(48deg);
+  animation-delay: 0.4s;
+}
 
-    .bar4-loading {
-      transform: rotate(72deg);
-      animation-delay: .6s
-    }
+.bar4-loading {
+  transform: rotate(72deg);
+  animation-delay: 0.6s;
+}
 
-    .bar5-loading {
-      transform: rotate(96deg);
-      animation-delay: .8s;
-    }
+.bar5-loading {
+  transform: rotate(96deg);
+  animation-delay: 0.8s;
+}
 
-    .bar6-loading {
-      transform: rotate(120deg);
-      animation-delay: 1s;
-    }
+.bar6-loading {
+  transform: rotate(120deg);
+  animation-delay: 1s;
+}
 
-    .bar7-loading {
-      transform: rotate(144deg);
-      animation-delay: 1.2s;
-    }
+.bar7-loading {
+  transform: rotate(144deg);
+  animation-delay: 1.2s;
+}
 
-    .bar8-loading {
-      transform: rotate(168deg);
-      animation-delay: 1.4s;
-    }
+.bar8-loading {
+  transform: rotate(168deg);
+  animation-delay: 1.4s;
+}
 
-    .bar9-loading {
-      transform: rotate(192deg);
-      animation-delay: 1.6s;
-    }
+.bar9-loading {
+  transform: rotate(192deg);
+  animation-delay: 1.6s;
+}
 
-    .bar10-loading {
-      transform: rotate(216deg);
-      animation-delay: 1.8s
-    }
+.bar10-loading {
+  transform: rotate(216deg);
+  animation-delay: 1.8s;
+}
 
-    .bar11-loading {
-      transform: rotate(240deg);
-      animation-delay: 2s
-    }
+.bar11-loading {
+  transform: rotate(240deg);
+  animation-delay: 2s;
+}
 
-    .bar12-loading {
-      transform: rotate(264deg);
-      animation-delay: 2.2s
-    }
+.bar12-loading {
+  transform: rotate(264deg);
+  animation-delay: 2.2s;
+}
 
-    .bar13-loading {
-      transform: rotate(288deg);
-      animation-delay: 2.4s
-    }
+.bar13-loading {
+  transform: rotate(288deg);
+  animation-delay: 2.4s;
+}
 
-    .bar14-loading {
-      transform: rotate(312deg);
-      animation-delay: 2.6s
-    }
+.bar14-loading {
+  transform: rotate(312deg);
+  animation-delay: 2.6s;
+}
 
-    .bar15-loading {
-      transform: rotate(336deg);
-      animation-delay: 2.8s
-    }
+.bar15-loading {
+  transform: rotate(336deg);
+  animation-delay: 2.8s;
+}
 
-    @keyframes dots-loading {
-      0% {
-        opacity: 1;
-      }
+@keyframes dots-loading {
+  0% {
+    opacity: 1;
+  }
 
-      50% {
-        opacity: 0;
-      }
+  50% {
+    opacity: 0;
+  }
 
-      100% {
-        opacity: 1;
-      }
-    }
+  100% {
+    opacity: 1;
+  }
+}
 
-    @keyframes bar-loading {
-      0% {
-        background-color: #f00;
-        height: 20px;
-      }
+@keyframes bar-loading {
+  0% {
+    background-color: #9f2718;
+    height: 20px;
+  }
 
-      10% {
-        height: 20px;
-      }
+  10% {
+    height: 20px;
+  }
 
-      25% {
-        background-color: #f90;
-        height: 37px;
-      }
+  25% {
+    background-color: #ffd134;
+    height: 37px;
+  }
 
-      40% {
-        height: 20px;
-      }
+  40% {
+    height: 20px;
+  }
 
-      50% {
-        background-color: #f00;
-      }
+  50% {
+    background-color: #9f2718;
+  }
 
-      100% {
-        height: 20px;
-      }
-    }
+  100% {
+    height: 20px;
+  }
+}
