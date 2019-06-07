@@ -9,7 +9,7 @@ import axios from "axios"
 
 class App extends Component { 
   constructor() {
-    super();
+    super(); 
     // Create an empty initial state;
     this.state = {
       nutriData: {},
