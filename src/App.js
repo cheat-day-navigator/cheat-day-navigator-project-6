@@ -43,7 +43,9 @@ class App extends Component {
             value={this.state.userInput}  
           />
           {this.state.nutritionVisible ? <NutritionCard
-            data={this.state.nutriData.common} value={this.state.userInput}
+            commonData={this.state.nutriData.common} 
+            brandedData={this.state.nutriData.branded} 
+            value={this.state.userInput}
           /> : null}
         </main>
         <footer>
