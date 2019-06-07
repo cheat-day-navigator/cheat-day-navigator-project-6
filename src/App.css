@@ -224,6 +224,10 @@ form .buttons {
   justify-content: space-between;
 }
 
+form input {
+  width: 90%;
+}
+
 .nutrition-card {
   height: 100%;
   width: 40%;

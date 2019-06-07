@@ -23,6 +23,7 @@ class App extends Component {
 
 
   showNutritionCard = () => {
+
     this.setState({
       nutritionVisible: true
     })

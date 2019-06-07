@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import firebase from "./globalComponents/firebase"
+import firebase from './globalComponents/firebase';
+
 
 
 class NutritionCard extends Component {
@@ -10,11 +11,10 @@ class NutritionCard extends Component {
         dbRef.push(this.props.data)
 
 
-    }   
+    }
 
 
     render() {
-        // console.log(this.props.data)
         return (
             <div className="gallery-field">
                 <div className="item-card">
@@ -37,6 +37,7 @@ class NutritionCard extends Component {
         )
     }
 }
+
 export default NutritionCard;
 
 
