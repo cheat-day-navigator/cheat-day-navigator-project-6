@@ -1,7 +1,6 @@
-import React, { Component } from 'react';
-import axios from 'axios';
-import APIData from './apiData';
-import Swal from 'sweetalert2';
+import React, { Component } from 'react'
+import axios from 'axios'
+import APIData from './apiData'
 import firebase from "./../globalComponents/firebase";
 
 class InputForm extends Component {
@@ -35,7 +34,7 @@ class InputForm extends Component {
   // }
 
 
-
+    
   handleKeyPress = (e) => {
     if (e.which === 13) {
       this.handleClick(e)
@@ -47,10 +46,6 @@ class InputForm extends Component {
     this.setState({
       userInput: event.target.value,
     })
-  }
-
-  clearForm = () => {
-    document.getElementById('main-form').reset();
   }
 
   // Create an event listener for user input
@@ -71,33 +66,23 @@ class InputForm extends Component {
       }
     }).then(result => {
       let queryResult = result.data
-      if (queryResult.common.length > 0) {
-        this.setState({ data: queryResult }, () => {
-          this.props.toggleCard();
-        })
-        this.props.data(queryResult)
-      } else {
-        this.clearForm();
-        return Swal.fire({
-          title: 'Oops!',
-          text: `We can't find that food! Try something else!`,
-          type: 'error',
-          confirmButtonText: 'Okay'
-        })
-      }
+      this.setState({ data: queryResult }, () => {
+        this.props.toggleCard();
+      })
+      this.props.data(queryResult)
     })
   }
 
   render() {
     return (
-      <form id="main-form">
+      <form>
         <label htmlFor="search">Look up your favourite foods!</label>
         <input type="text" id="search" placeholder="e.g. Chicken nuggets" onChange={this.handleChange} onKeyDown={this.handleKeyPress} />
         <div className="buttons">
           <button type="submit">Compare</button>
           <button type="submit" onClick={this.handleClick}>Submit</button>
         </div>
-      </form >
+      </form>
     )
   }
 }
