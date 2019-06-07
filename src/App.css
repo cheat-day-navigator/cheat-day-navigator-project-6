@@ -1,6 +1,10 @@
+.App,
+html {
+  background: #FAFAFA;
+}
+
 .App {
   text-align: center;
-  background: #FAFAFA;
 }
 
 h1,
@@ -30,6 +34,9 @@ body {
 }
 
 header {
+  max-width: 1280px;
+  width: 100%;
+  margin: 0 auto;
   height: 100vh;
   position: relative;
 }
@@ -48,15 +55,15 @@ header {
   border: 30px solid #9f2718;
   padding: 40px;
   position: absolute;
-  top: -20px;
-  left: 125px;
+  top: -5vh;
+  left: 10vw;
   border-radius: 50%;
 }
 
 .title-info-container {
   position: absolute;
   top: 40vh;
-  left: 680px;
+  left: 50vw;
   width: 200px;
   height: 200px;
   border-radius: 50%;
@@ -215,6 +222,10 @@ form {
 form .buttons {
   display: flex;
   justify-content: space-between;
+}
+
+form input {
+  width: 90%;
 }
 
 .nutrition-card {

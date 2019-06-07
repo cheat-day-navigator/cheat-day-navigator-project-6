@@ -3,6 +3,7 @@ import './App.css';
 import InputForm from './localComponents/inputForm';
 import Header from './localComponents/Header.js';
 import NutritionCard from './NutritionCard.js';
+import Footer from './Footer.js'
 
 class App extends Component {
   constructor() {
@@ -22,6 +23,7 @@ class App extends Component {
 
 
   showNutritionCard = () => {
+
     this.setState({
       nutritionVisible: true
     })
@@ -48,9 +50,7 @@ class App extends Component {
             value={this.state.userInput}
           /> : null}
         </main>
-        <footer>
-          <p>Made by Inder, Chitra, Paul, and Kat using the Nutrionix API</p>
-        </footer>
+        <Footer />
       </div>
     );
   }

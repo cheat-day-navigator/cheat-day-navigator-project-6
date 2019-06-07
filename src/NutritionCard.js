@@ -1,16 +1,27 @@
 import React, { Component } from 'react';
+import firebase from './globalComponents/firebase';
+
+
 
 class NutritionCard extends Component {
 
-    
+    // handleClick = (e) => {
+    //     e.preventDefault();
+    //     const dbRef = firebase.database().ref();
+    //     dbRef.push(this.props.data)
+
+
+    // }
+
+
     render() {
         return (
             <div className="gallery-field">
-                {this.props.commonData && this.props.commonData.map((common, i)=> {
+                {this.props.commonData && this.props.commonData.map((common, i) => {
                     console.log(common)
-                    return( 
-                        <div className="item-card" key = {common.tag_id}>
-                            <img src={common.photo.thumb} alt=""/>
+                    return (
+                        <div className="item-card" key={common.tag_id}>
+                            <img src={common.photo.thumb} alt="" />
                             <button>Read More</button>
                             <div className="nutrition-card">
                                 <h2>{common && common.tag_name}</h2>
@@ -21,7 +32,7 @@ class NutritionCard extends Component {
                                     <li><p>Vitamin A</p><p>value</p></li>
                                     <li><p>Vitamin A</p><p>value</p></li>
                                     <li><p>Vitamin A</p><p>value</p></li>
-                                </ul> 
+                                </ul>
                             </div>
                         </div>
                     )
@@ -30,6 +41,7 @@ class NutritionCard extends Component {
         )
     }
 }
+
 export default NutritionCard;
 
 
