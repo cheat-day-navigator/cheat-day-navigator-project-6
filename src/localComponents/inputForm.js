@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 import APIData from './apiData'
+import firebase from "./../globalComponents/firebase";
 
 class InputForm extends Component {
 
@@ -23,6 +24,16 @@ class InputForm extends Component {
       appId: appIdGrab
     })
   }
+
+  // handleClickTwo = (e) => {
+  //   e.preventDefault();
+  //   const dbRef = firebase.database().ref("searchresults/");
+  //   // console.log(this.state.userInput)
+  //   dbRef.push(this.state.userInput)
+  //   console.log(this.state.userInput)
+  // }
+
+
     
   handleKeyPress = (e) => {
     if (e.which === 13) {
@@ -40,6 +51,8 @@ class InputForm extends Component {
   // Create an event listener for user input
   handleClick = (event) => {
     event.preventDefault();
+    const dbRef = firebase.database().ref("searchresults/");
+    dbRef.push(this.state.userInput)
     axios({
       url: this.state.url,
       method: `GET`,

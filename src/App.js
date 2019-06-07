@@ -40,9 +40,10 @@ class App extends Component {
           <InputForm
             data={this.callBackData}
             toggleCard={this.showNutritionCard}
+            value={this.state.userInput}  
           />
           {this.state.nutritionVisible ? <NutritionCard
-            data={this.state.nutriData.common}
+            data={this.state.nutriData.common} value={this.state.userInput}
           /> : null}
         </main>
         <footer>
