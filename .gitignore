@@ -7,6 +7,7 @@
 
 # testing
 /coverage
+src/localComponents/apiData.js*
 
 # production
 /build
@@ -16,11 +17,7 @@
 .env.local
 .env.development.local
 .env.test.local
-.env.production.local
-/src/localComponents/apiData.js
 
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-
-/src/globalComponents/axios.js
