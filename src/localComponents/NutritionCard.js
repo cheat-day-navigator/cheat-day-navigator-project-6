@@ -16,7 +16,7 @@ class NutritionCard extends Component {
             <div className="gallery-field">
                 {this.props.commonData && this.props.commonData.map((common, i) => {
                     return (
-                        <div className="item-card" key={common.tag_id}>
+                        <div className="item-card" key={`${common.tag_id}-${i}`}>
                             <img src={common.photo.thumb} alt="" />
                             <button>Read More</button>
                             <div className="nutrition-card">
