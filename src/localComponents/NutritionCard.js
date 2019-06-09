@@ -1,4 +1,8 @@
 import React, { Component } from 'react';
+import firebase from './../globalComponents/firebase.js';
+import "react-responsive-carousel/lib/styles/carousel.min.css";
+import { Carousel } from 'react-responsive-carousel';
+
 
 class NutritionCard extends Component {
   constructor() {
@@ -23,11 +27,17 @@ class NutritionCard extends Component {
     })
   }
 
+  handleSaveItem = (e) => {
+    e.preventDefault();
+    const position = e.target.id;
+    const dbRef = firebase.database().ref('savedItems/');
+    dbRef.push(this.props.commonData[position])
+  }
 
   render() {
     return (
       <div className="gallery-field">
-        {console.log(this.state)}
+        <Carousel axis="vertical" showThumbs={false} className="wrapper">
         {this.props.commonData && this.props.commonData.map((common, i) => {
           let cals = common.full_nutrients.find((i) => i.attr_id === this.state.cals.attr_id)
           let fats = common.full_nutrients.find((i) => i.attr_id === this.state.fats.attr_id)
@@ -52,6 +62,7 @@ class NutritionCard extends Component {
             </div>
           )
         })}
+      </Carousel>
       </div>
     )
   }
