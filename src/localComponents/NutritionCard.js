@@ -1,7 +1,4 @@
 import React, { Component } from 'react';
-import firebase from './globalComponents/firebase';
-
-
 
 class NutritionCard extends Component {
 

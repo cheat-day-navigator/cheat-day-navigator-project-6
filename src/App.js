@@ -1,15 +1,14 @@
 import React, { Component } from 'react';
-import './App.css';
+import './styles/App.css';
 import InputForm from './localComponents/inputForm';
-import Header from './localComponents/Header.js';
-import NutritionCard from './NutritionCard.js';
-import Footer from './Footer.js'
-import APIData from './localComponents/apiData'
-import axios from "axios"
+import Header from './localComponents/Header';
+import NutritionCard from './localComponents/NutritionCard';
+import Footer from './localComponents/Footer'
+import MakeCall from './globalComponents/makeCall'
 
-class App extends Component { 
+class App extends Component {
   constructor() {
-    super(); 
+    super();
     // Create an empty initial state;
     this.state = {
       nutriData: {},
@@ -20,19 +19,11 @@ class App extends Component {
   }
 
   componentDidMount() {
-    const appKeyGrab = APIData.appKey
-    const appIdGrab = APIData.appId
-    axios({
-      url: 'https://trackapi.nutritionix.com/v2/utils/nutrients',
-      method: `GET`,
-      dataResponse: `json`,
-      headers: {
-        'x-app-id': appIdGrab,
-        'x-app-key': appKeyGrab
-      }
-    }).then(result => {
-      this.setState({ macroNutrients: result.data })
-      console.log(result.data)
+    MakeCall('macroNutrients').then((response) => {
+      let newState = response
+      this.setState({
+        macroNutrients: newState
+      })
     })
   }
 
@@ -50,6 +41,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
+      {console.log(this.state.macroNutrients)}
         <Header />
         <main>
           <InputForm
