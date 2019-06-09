@@ -17,13 +17,14 @@ const MakeCall = (searchtype = `simpleSearch`, appQuery = `chicken nuggets`) => 
   } else if (searchtype === `simpleSearch`) { // Regular food search
     urlType = `https://trackapi.nutritionix.com/v2/search/instant`
     parameters = {
-      'query': appQuery
+      'query': appQuery,
+      'detailed': true
     }
 
-  } else if (searchtype === `readMore`) { // Information call for specific food result
+  } else if (searchtype === `readMore`) { // Information call for specific food result. ONLY BRANDS HAVE A NTX_ITEM_ID
     urlType = 'https://trackapi.nutritionix.com/v2/search/item'
     parameters = {
-      'tag_id': appQuery
+      'ntx_item_id': appQuery
     }
   } else {
     console.log(`Invalid or missing searchtype prop. Make sure you first prop when using MakeCall() is either 'macroNutrients', 'simpleSearch', or 'readMore'!`)
