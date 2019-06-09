@@ -5,13 +5,12 @@ import { Carousel } from 'react-responsive-carousel';
 
 class NutritionCard extends Component {
 
-    // handleClick = (e) => {
-    //     e.preventDefault();
-    //     const dbRef = firebase.database().ref();
-    //     dbRef.push(this.props.data)
-
-
-    // }
+    handleSaveItem = (e) => {
+        e.preventDefault();
+        const position = e.target.id;
+        const dbRef = firebase.database().ref('savedItems/');
+        dbRef.push(this.props.commonData[position])
+    }
 
 
     render() {
@@ -23,7 +22,7 @@ class NutritionCard extends Component {
                 {this.props.commonData && this.props.commonData.map((common, i) => {
                     // console.log(common)
                     return (
-                        <div className="item-card" key={common.tag_id}>
+                        <div className="item-card" key={`${common.tag_id}-${i}`}>
                             <img src={common.photo.thumb} alt="" />
                             <div>
                             <button>Read More</button>

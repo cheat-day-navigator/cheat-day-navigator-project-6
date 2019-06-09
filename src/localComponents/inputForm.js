@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import axios from 'axios'
 import Swal from 'sweetalert2'
 import firebase from "./../globalComponents/firebase"
 import MakeCall from "./../globalComponents/makeCall"

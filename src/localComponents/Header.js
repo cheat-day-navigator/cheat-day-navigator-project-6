@@ -1,16 +1,12 @@
 import React from 'react';
+import Dropdown from './Dropdown.js';
 
 const Header = () => {
     return (
         <header>
             <nav>
                 <h4>Superfood Navigation</h4>
-                <ul className="menu">
-                    <li>Saved Items</li>
-                    {/* <ul className="drop-down">
-                        <li>Saved Item</li>
-                    </ul> */}
-                </ul>
+                <Dropdown />
             </nav>
             <div className="title-container">
                 <h1>Superfood Navigation
