@@ -133,6 +133,31 @@ nav {
   right: 0;
 }
 
+ul button {
+  background: none;
+  border: none;
+  font-size: 1.3rem;
+  position: relative;
+}
+
+ul.drop-down {
+  position: absolute;
+  top: 60px;
+  right: 60px;
+  background: #9f2718;
+  color: #FAFAFA;
+  width: 150px;
+  padding: 15px;
+  height: auto;
+  max-height: 200px;
+  overflow: auto;
+}
+
+ul.drop-down li {
+  border-bottom: 0;
+  padding: 15px;
+}
+
 main {
   height: 90vh;
 }
@@ -172,6 +197,15 @@ nav {
   border: 10px solid #ffd134;
   margin-left: 30px;
   margin-right: 30px;
+  margin-bottom: 100px;
+  position: relative;
+}
+
+.item-card .save-item-btn {
+  position: absolute;
+  bottom: -80px;
+  right: -10px;
+  width: 30%;
 }
 
 form label,
