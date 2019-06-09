@@ -3,18 +3,11 @@ import firebase from './../globalComponents/firebase.js'
 
 class NutritionCard extends Component {
 
-    constructor() {
-        super();
-        this.state = {
-            foodItem: ''
-        }
-    }
-
-    handleClick = (e) => {
+    handleSaveItem = (e) => {
         e.preventDefault();
+        const position = e.target.id;
         const dbRef = firebase.database().ref('savedItems/');
-        dbRef.push(this.props.commonData)
-        console.log('clicked')
+        dbRef.push(this.props.commonData[position])
     }
 
 
@@ -37,7 +30,7 @@ class NutritionCard extends Component {
                                     <li><p>Vitamin A</p><p>value</p></li>
                                 </ul>
                             </div>
-                            <button onClick={this.handleClick()} className="save-item-btn" id={i}>Save Item</button>
+                            <button onClick={this.handleSaveItem} className="save-item-btn" id={i}>Save Item</button>
                         </div>
                     )
                 })}

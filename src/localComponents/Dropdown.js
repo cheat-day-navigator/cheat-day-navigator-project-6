@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import firebase from './../globalComponents/firebase.js';
 
 class Dropdown extends Component {
     constructor(props) {
@@ -6,6 +7,23 @@ class Dropdown extends Component {
         this.state = {
             listOpen: false
         }
+    }
+
+    componentDidMount() {
+        const dbRef = firebase.database().ref('savedItems/');
+        dbRef.on('value', (response) => {
+            const savedItems = [];
+            const data = response.val();
+
+            for (let key in data) {
+                savedItems.push(data[key])
+            }
+
+            this.setState({
+                savedItems
+            })
+
+        });
     }
 
     openDropdown = () => {
@@ -20,15 +38,11 @@ class Dropdown extends Component {
                 <li><button onClick={this.openDropdown}>Saved Items</button></li>
                 {this.state.listOpen ?
                     <ul className="drop-down">
-                        <li>Saved Item</li>
-                        <li>Saved Item</li>
-                        <li>Saved Item</li>
-                        <li>Saved Item</li>
-                        <li>Saved Item</li>
-                        <li>Saved Item</li>
-                        <li>Saved Item</li>
-                        <li>Saved Item</li>
-                        <li>Saved Item</li>
+                        {this.state.savedItems.map((item) => {
+                            return (
+                                <li>{item.food_name}</li>
+                            )
+                        })}
                     </ul>
                     : null}
             </ul>
