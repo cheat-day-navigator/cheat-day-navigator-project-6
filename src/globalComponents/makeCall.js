@@ -25,6 +25,8 @@ const MakeCall = (searchtype = `simpleSearch`, appQuery = `chicken nuggets`) => 
     parameters = {
       'tag_id': appQuery
     }
+  } else {
+    console.log(`Invalid or missing searchtype prop. Make sure you first prop when using MakeCall() is either 'macroNutrients', 'simpleSearch', or 'readMore'!`)
   }
   return (
     axios({
