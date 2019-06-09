@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import './App.css';
+import './styles/App.css';
 import InputForm from './localComponents/inputForm';
 import Header from './localComponents/Header.js';
-import NutritionCard from './NutritionCard.js';
-import Footer from './Footer.js'
+import NutritionCard from './localComponents/NutritionCard.js';
+import Footer from './localComponents/Footer.js'
 import APIData from './localComponents/apiData'
 import axios from "axios"
 
