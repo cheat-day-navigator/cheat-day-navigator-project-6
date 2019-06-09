@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
-import firebase from './../globalComponents/firebase.js'
+import firebase from './../globalComponents/firebase.js';
+import "react-responsive-carousel/lib/styles/carousel.min.css";
+import { Carousel } from 'react-responsive-carousel';
+
 
 class NutritionCard extends Component {
 
@@ -14,6 +17,7 @@ class NutritionCard extends Component {
     render() {
         return (
             <div className="gallery-field">
+                <Carousel axis="vertical" showThumbs={false} className="wrapper">
                 {this.props.commonData && this.props.commonData.map((common, i) => {
                     return (
                         <div className="item-card" key={`${common.tag_id}-${i}`}>
@@ -34,6 +38,7 @@ class NutritionCard extends Component {
                         </div>
                     )
                 })}
+                </Carousel>
             </div>
         )
     }
