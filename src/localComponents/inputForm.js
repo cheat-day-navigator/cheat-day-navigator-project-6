@@ -1,29 +1,17 @@
-import React, { Component } from 'react';
-import axios from 'axios';
-import APIData from './apiData';
-import Swal from 'sweetalert2';
-import firebase from "./../globalComponents/firebase";
+import React, { Component } from 'react'
+import axios from 'axios'
+import Swal from 'sweetalert2'
+import firebase from "./../globalComponents/firebase"
+import MakeCall from "./../globalComponents/makeCall"
 
 class InputForm extends Component {
 
   constructor() {
     super();
     this.state = {
-      url: 'https://trackapi.nutritionix.com/v2/search/instant',
-      appKey: '',
-      appId: '',
       data: {},
       userInput: ''
     }
-  }
-
-  componentDidMount() {
-    const appKeyGrab = APIData.appKey
-    const appIdGrab = APIData.appId
-    this.setState({
-      appKey: appKeyGrab,
-      appId: appIdGrab
-    })
   }
 
   // handleClickTwo = (e) => {
@@ -58,19 +46,8 @@ class InputForm extends Component {
     event.preventDefault();
     const dbRef = firebase.database().ref("searchresults/");
     dbRef.push(this.state.userInput)
-    axios({
-      url: this.state.url,
-      method: `GET`,
-      dataResponse: `json`,
-      params: {
-        query: this.state.userInput
-      },
-      headers: {
-        'x-app-id': this.state.appId,
-        'x-app-key': this.state.appKey
-      }
-    }).then(result => {
-      let queryResult = result.data
+    MakeCall('simpleSearch',this.state.userInput).then(result => {
+      let queryResult = result
       if (queryResult.common.length > 0) {
         this.setState({ data: queryResult }, () => {
           this.props.toggleCard();
