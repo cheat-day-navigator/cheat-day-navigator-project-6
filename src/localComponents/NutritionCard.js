@@ -15,6 +15,8 @@ class NutritionCard extends Component {
 
 
     render() {
+
+        
         return (
             <div className="gallery-field ">
                 <Carousel axis="vertical" showThumbs={false} className="wrapper">
