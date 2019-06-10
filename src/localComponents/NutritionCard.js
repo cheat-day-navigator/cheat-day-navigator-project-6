@@ -45,7 +45,6 @@ class NutritionCard extends Component {
           let sugars = common.full_nutrients.find((i) => i.attr_id === this.state.sugars.attr_id)
           return (
             <div className="item-card" key={`${common.tag_id}-${i}`}>
-            {console.log(common)}
               <img src={common.photo.thumb} alt="" />
               <button>Read More</button>
               <div className="nutrition-card">

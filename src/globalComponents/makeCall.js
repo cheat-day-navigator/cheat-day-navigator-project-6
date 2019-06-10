@@ -1,6 +1,6 @@
 import axios from 'axios'
 import APIData from '../localComponents/apiData'
-import Swal from 'sweetalert2';
+import Swal from 'sweetalert2'
 
 // A global, multipurpose axios function that can handle multiple different kinds of API calls
 
@@ -10,6 +10,15 @@ const MakeCall = (searchtype = `simpleSearch`, appQuery = `chicken nuggets`) => 
   let urlType = '' // Determining what kind of API call to do
   let methodType = `GET` // Defaulting API method to GET
   let parameters = {} // Determining which params (if applicable) to add to API call
+
+  const warningFire = (warning) => {
+    Swal.fire({
+      title: 'Oops!',
+      text: warning,
+      type: 'error',
+      confirmButtonText: 'Okay'
+    })
+  }
 
   if (searchtype === `macroNutrients`) { // Macronutrient call
     urlType = `https://trackapi.nutritionix.com/v2/utils/nutrients`
@@ -29,6 +38,7 @@ const MakeCall = (searchtype = `simpleSearch`, appQuery = `chicken nuggets`) => 
   } else {
     console.log(`Invalid or missing searchtype prop. Make sure your first prop when using MakeCall() is either 'macroNutrients', 'simpleSearch', or 'readMore'!`)
   }
+
   return (
     axios({
       method: methodType,
@@ -41,14 +51,9 @@ const MakeCall = (searchtype = `simpleSearch`, appQuery = `chicken nuggets`) => 
       params: parameters
     }).then(response => {
       return response.data
-    }).catch(error => {
+    }).catch(error => {  // If nothing matched, something went wrong on your end!
       console.log(error)
-      Swal.fire({ // If none of these match, something went wrong on your end!
-        title: 'Oops!',
-        text: `Something went wrong. Please wait a moment, and try your search again!`,
-        type: 'error',
-        confirmButtonText: 'Okay'
-      })
+      warningFire(`Something went wrong. Please wait a moment, and try your search again!`)
     })
   )
 }

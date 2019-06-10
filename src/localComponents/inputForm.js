@@ -43,6 +43,7 @@ class InputForm extends Component {
   // Create an event listener for user input
   handleClick = (event) => {
     event.preventDefault();
+    this.props.loading(true)
     const dbRef = firebase.database().ref("searchresults/");
     dbRef.push(this.state.userInput)
     MakeCall('simpleSearch',this.state.userInput).then(result => {
@@ -61,6 +62,10 @@ class InputForm extends Component {
           confirmButtonText: 'Okay'
         })
       }
+    }).then(() => {
+      setTimeout(() => {
+        this.props.loading(false)
+      }, 1000)
     })
   }
 
