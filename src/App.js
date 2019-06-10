@@ -7,6 +7,7 @@ import Footer from './localComponents/Footer'
 import MakeCall from './globalComponents/makeCall'
 import LoadingModal from './localComponents/loadingModal'
 import Swal from 'sweetalert2'
+import { BrowserRouter as Router, Link, Route } from "react-router-dom";
 
 class App extends Component {
   constructor() {
@@ -75,7 +76,7 @@ class App extends Component {
           : null}
         {console.log(this.state.macroNutrients)}
         <Header />
-        <main>
+        <main className="wrapper">
           <InputForm
             data={this.callBackData}
             toggleCard={this.showNutritionCard}

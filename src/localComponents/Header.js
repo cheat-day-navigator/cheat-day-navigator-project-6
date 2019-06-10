@@ -21,7 +21,7 @@ const Header = () => {
 
             </div>
             <div className="title-info-container">
-                <h3>Learn about all your favourite foods and compare their micronutrient content!
+                <h3>Learn about all your favourite foods!
                     <div className="top-lines lines">
                         <div className="bar line1"></div>
                         <div className="bar line2"></div>
