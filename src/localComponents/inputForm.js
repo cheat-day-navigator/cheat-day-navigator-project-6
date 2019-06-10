@@ -13,16 +13,6 @@ class InputForm extends Component {
     }
   }
 
-  // handleClickTwo = (e) => {
-  //   e.preventDefault();
-  //   const dbRef = firebase.database().ref("searchresults/");
-  //   // console.log(this.state.userInput)
-  //   dbRef.push(this.state.userInput)
-  //   console.log(this.state.userInput)
-  // }
-
-
-
   handleKeyPress = (e) => {
     if (e.which === 13) {
       this.handleClick(e)
@@ -46,7 +36,7 @@ class InputForm extends Component {
     this.props.loading(true)
     const dbRef = firebase.database().ref("searchresults/");
     dbRef.push(this.state.userInput)
-    MakeCall('simpleSearch',this.state.userInput).then(result => {
+    MakeCall('simpleSearch', this.state.userInput).then(result => {
       let queryResult = result
       if (queryResult.common.length > 0) {
         this.setState({ data: queryResult }, () => {
@@ -70,13 +60,16 @@ class InputForm extends Component {
     })
   }
 
+  
+
   render() {
     return (
       <form id="main-form">
         <label htmlFor="search">Look up your favourite foods and find the nutrient information!</label>
         <input type="text" id="search" placeholder="e.g. Chicken nuggets" onChange={this.handleChange} onKeyDown={this.handleKeyPress} />
+        {this.state.showSecondInput ? <input type="text" id="compare" placeholder="e.g. 
+        Pork chops" onChange={this.handleChange} onKeyDown={this.handleKeyPress} /> : null  }
         <div className="buttons">
-          <button type="submit">Compare</button>
           <button type="submit" onClick={this.handleClick}>Submit</button>
         </div>
       </form >
