@@ -73,7 +73,7 @@ class InputForm extends Component {
   render() {
     return (
       <form id="main-form">
-        <label htmlFor="search">Look up your favourite foods!</label>
+        <label htmlFor="search">Look up your favourite foods and find the nutrient information!</label>
         <input type="text" id="search" placeholder="e.g. Chicken nuggets" onChange={this.handleChange} onKeyDown={this.handleKeyPress} />
         <div className="buttons">
           <button type="submit">Compare</button>
