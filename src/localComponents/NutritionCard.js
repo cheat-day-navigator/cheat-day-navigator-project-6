@@ -104,7 +104,7 @@ class NutritionCard extends Component {
   render() {
     return (
       <div className="gallery-field">
-        <Carousel showThumbs={false} className="wrapper" swipeable={false}>
+        <Carousel showThumbs={false} className="wrapper" swipeable={false} useKeyboardArrows>
           {this.props.commonData && this.props.commonData.map((common, i) => {
             let thisValues = this.state.nutrientValues.map((n, id) => {
               let capturedNutrients = common.full_nutrients.find((key) => key.attr_id === n.attr_id)
@@ -112,6 +112,7 @@ class NutritionCard extends Component {
             })
             return (
               <div className="wrapper">
+                <div className="card-info">
                 <div className="item-card" key={`${common.tag_id}-${i}`}>
                   <img src={common.photo.thumb} alt="" />
                   <button>Read More</button>
@@ -133,6 +134,7 @@ class NutritionCard extends Component {
                     </ul>
                   </div>
                   <button onClick={this.handleSaveItem} className="save-item-btn" id={i} value={common.tag_name} data-id={this.generateFirebaseId(common.tag_name)}>{this.checkDuplicates(common.tag_name) ? 'Unsave Item' : 'Save Item'}</button>
+                  </div>
                 </div>
               </div>
             )
