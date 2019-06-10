@@ -5,7 +5,8 @@ class Dropdown extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            listOpen: false
+            listOpen: false,
+            compareOpen: false
         }
     }
 
@@ -47,13 +48,27 @@ class Dropdown extends Component {
         })
     }
 
+    openCompare = () => {
+        this.setState({
+            compareOpen: !this.state.compareOpen
+        })
+    }
+
     render() {
         return (
             <ul className="menu" >
-                <li><button onClick={this.openCompareList}>Compare List</button><div className="counter"><p>{this.state.comparedItems && this.state.comparedItems.length}</p></div></li>
+                <li><button onClick={this.openCompare}>Compare List</button><div className="counter"><p>{this.state.comparedItems && this.state.comparedItems.length}</p></div></li>
+                {this.state.compareOpen ?
+                    <ul className="drop-down compared-items">
+                        {this.state.comparedItems.map((item) => {
+                            return (
+                                <li>{item.tag_name}</li>
+                            )
+                        })}
+                    </ul> : null}
                 <li><button onClick={this.openDropdown}>Saved Items</button><div className="counter"><p>{this.state.savedItems && this.state.savedItems.length}</p></div></li>
                 {this.state.listOpen ?
-                    <ul className="drop-down">
+                    <ul className="drop-down saved-items">
                         {this.state.savedItems.map((item) => {
                             return (
                                 <li>{item.food_name}</li>

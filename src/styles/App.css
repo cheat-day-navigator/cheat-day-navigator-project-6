@@ -132,6 +132,12 @@ nav {
   right: 0;
 }
 
+nav ul.menu {
+  width: 400px;
+  display: flex;
+  justify-content: space-around;
+}
+
 ul button {
   background: none;
   border: none;
@@ -139,10 +145,18 @@ ul button {
   position: relative;
 }
 
-ul.drop-down {
-  position: absolute;
+ul.saved-items {
   top: 60px;
   right: 60px;
+}
+
+ul.compared-items {
+  top: 60px;
+  right: 270px;
+}
+
+ul.drop-down {
+  position: absolute;
   background: #9f2718;
   color: #FAFAFA;
   width: 150px;
@@ -152,11 +166,14 @@ ul.drop-down {
   overflow: auto;
 }
 
-ul.drop-down li {
+ul.drop-down li,
+.menu li {
   border-bottom: 0;
-  padding: 15px;
 }
 
+ul.drop-down li {
+  padding: 15px;
+}
 /* main {
   height: 90vh;
 } */
@@ -290,7 +307,7 @@ li {
   justify-content: space-between;
 }
 
-li:not(:last-of-type) {
+.item-card li:not(:last-of-type) {
   border-bottom: 2px solid black;
 }
 
