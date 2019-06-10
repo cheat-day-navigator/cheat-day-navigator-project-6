@@ -36,6 +36,7 @@ class Dropdown extends Component {
         return (
             <ul className="menu" >
                 <li><button onClick={this.openDropdown}>Saved Items</button></li>
+                <div className="counter"><p>{this.state.savedItems && this.state.savedItems.length}</p></div>
                 {this.state.listOpen ?
                     <ul className="drop-down">
                         {this.state.savedItems.map((item) => {

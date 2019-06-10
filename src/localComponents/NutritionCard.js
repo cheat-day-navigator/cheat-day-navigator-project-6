@@ -11,7 +11,8 @@ class NutritionCard extends Component {
       fats: { 'attr_id': 204 },
       carbs: { 'attr_id': 205 },
       sugars: { 'attr_id': 269 },
-      itemList: []
+      itemList: [],
+      compareList: []
     }
   }
 
@@ -20,12 +21,14 @@ class NutritionCard extends Component {
     const processInfo = (id) => {
       return this.props.nutrients.find((i) => i.attr_id === id)
     }
+    this.retrieveCompareList();
     this.setState({
       cals: processInfo(this.state.cals.attr_id),
       fats: processInfo(this.state.fats.attr_id),
       carbs: processInfo(this.state.carbs.attr_id),
       sugars: processInfo(this.state.sugars.attr_id)
     })
+
   }
 
   retrieveFirebase = () => {
@@ -69,14 +72,44 @@ class NutritionCard extends Component {
     }
   }
 
+  retrieveCompareList = () => {
+    const dbRef = firebase.database().ref('comparedItems/');
+    dbRef.on('value', (response) => {
+      const compareList = [];
+      const data = response.val();
+
+      for (let key in data) {
+        compareList.push({
+          data: data[key]
+        })
+      }
+
+      this.setState({
+        compareList
+      })
+    })
+  }
+
+  addToCompare = (e) => {
+    e.preventDefault();
+    const position = e.target.id
+    const dbRef = firebase.database().ref(`comparedItems/`)
+    if (this.state.compareList.length < 4) {
+      dbRef.push(this.props.commonData[position]);
+    } else {
+      dbRef.remove();
+      dbRef.push(this.props.commonData[position]);
+    }
+
+    console.log(this.state.compareList.length)
+  }
+
   handleSaveItem = (e) => {
     e.preventDefault();
     const position = e.target.id;
     const item = e.target.value;
 
     const isDuplicate = this.checkDuplicates(item)
-    console.log(isDuplicate)
-    console.log('item', item)
 
     // undefined is false-y but it's not actually a boolean 
     if (!isDuplicate) {
@@ -90,7 +123,7 @@ class NutritionCard extends Component {
 
   render() {
     return (
-      <div className="gallery-field">
+      <div className="gallery-field" >
         <Carousel showThumbs={false} className="wrapper" swipeable={false}>
           {this.props.commonData && this.props.commonData.map((common, i) => {
             let cals = common.full_nutrients.find((i) => i.attr_id === this.state.cals.attr_id)
@@ -114,6 +147,7 @@ class NutritionCard extends Component {
                     </ul>
                   </div>
                   <button onClick={this.handleSaveItem} className="save-item-btn" id={i} value={common.tag_name} data-id={this.generateFirebaseId(common.tag_name)}>{this.checkDuplicates(common.tag_name) ? 'Unsave Item' : 'Save Item'}</button>
+                  <button onClick={this.addToCompare} id={i} value={common.tag_name}>Add to Compare List</button>
                 </div>
               </div>
             )
