@@ -123,36 +123,40 @@ class NutritionCard extends Component {
 
   render() {
     return (
-      <div className="gallery-field" >
-        <Carousel showThumbs={false} className="wrapper" swipeable={false}>
-          {this.props.commonData && this.props.commonData.map((common, i) => {
-            let cals = common.full_nutrients.find((i) => i.attr_id === this.state.cals.attr_id)
-            let fats = common.full_nutrients.find((i) => i.attr_id === this.state.fats.attr_id)
-            let carbs = common.full_nutrients.find((i) => i.attr_id === this.state.carbs.attr_id)
-            let sugars = common.full_nutrients.find((i) => i.attr_id === this.state.sugars.attr_id)
-            return (
-              <div className="wrapper">
-                <div className="item-card" key={`${common.tag_id}-${i}`}>
-                  <img src={common.photo.thumb} alt="" />
-                  <button>Read More</button>
-                  <div className="nutrition-card">
-                    <h2>{common && common.tag_name}</h2>
-                    <h3>Nutrition Facts</h3>
-                    <p className="line">{common && common.serving_qty} {common && common.serving_unit}</p>
-                    <ul>
-                      <li><p>Energy</p><p>{cals === undefined ? '0' : cals.value.toFixed(2)} {this.state.cals.unit}</p></li>
-                      <li><p>Total lipid (fat)</p><p>{fats === undefined ? '0' : fats.value.toFixed(2)} {this.state.fats.unit}</p></li>
-                      <li><p>Carbohydrates</p><p>{carbs === undefined ? '0' : carbs.value.toFixed(2)} {this.state.carbs.unit}</p></li>
-                      <li><p>Sugars, total</p><p>{sugars === undefined ? '0' : sugars.value.toFixed(2)} {this.state.sugars.unit}</p></li>
-                    </ul>
+      <div className="gallery-field">
+        <div className="wrapper">
+          <Carousel showThumbs={false} className="wrapper" swipeable={false}>
+            {this.props.commonData && this.props.commonData.map((common, i) => {
+              let cals = common.full_nutrients.find((i) => i.attr_id === this.state.cals.attr_id)
+              let fats = common.full_nutrients.find((i) => i.attr_id === this.state.fats.attr_id)
+              let carbs = common.full_nutrients.find((i) => i.attr_id === this.state.carbs.attr_id)
+              let sugars = common.full_nutrients.find((i) => i.attr_id === this.state.sugars.attr_id)
+              return (
+                <div className="card-info">
+                  <div>
+                    <div className="item-card" key={`${common.tag_id}-${i}`}>
+                      <img src={common.photo.thumb} alt="" />
+                      <button>Read More</button>
+                      <div className="nutrition-card">
+                        <h2>{common && common.tag_name}</h2>
+                        <h3>Nutrition Facts</h3>
+                        <p className="line">{common && common.serving_qty} {common && common.serving_unit}</p>
+                        <ul>
+                          <li><p>Energy</p><p>{cals === undefined ? '0' : cals.value.toFixed(2)} {this.state.cals.unit}</p></li>
+                          <li><p>Total lipid (fat)</p><p>{fats === undefined ? '0' : fats.value.toFixed(2)} {this.state.fats.unit}</p></li>
+                          <li><p>Carbohydrates</p><p>{carbs === undefined ? '0' : carbs.value.toFixed(2)} {this.state.carbs.unit}</p></li>
+                          <li><p>Sugars, total</p><p>{sugars === undefined ? '0' : sugars.value.toFixed(2)} {this.state.sugars.unit}</p></li>
+                        </ul>
+                      </div>
+                      <button onClick={this.handleSaveItem} className="save-item-btn" id={i} value={common.tag_name} data-id={this.generateFirebaseId(common.tag_name)}>{this.checkDuplicates(common.tag_name) ? 'Unsave Item' : 'Save Item'}</button>
+                      <button className="compare-btn" onClick={this.addToCompare} id={i} value={common.tag_name}>Add to Compare List</button>
+                    </div>
                   </div>
-                  <button onClick={this.handleSaveItem} className="save-item-btn" id={i} value={common.tag_name} data-id={this.generateFirebaseId(common.tag_name)}>{this.checkDuplicates(common.tag_name) ? 'Unsave Item' : 'Save Item'}</button>
-                  <button onClick={this.addToCompare} id={i} value={common.tag_name}>Add to Compare List</button>
                 </div>
-              </div>
-            )
-          })}
-        </Carousel>
+              )
+            })}
+          </Carousel>
+        </div>
       </div>
     )
   }

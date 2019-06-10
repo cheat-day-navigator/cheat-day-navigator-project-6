@@ -210,7 +210,7 @@ nav {
 }
 
 .item-card {
-  height: 80vh;
+  height: 400px;
   width: 100vw;
   max-width: 400px;
   display: flex;
@@ -228,6 +228,13 @@ nav {
 .item-card .save-item-btn {
   position: absolute;
   bottom: -80px;
+  left: 0;
+}
+
+.item-card .compare-btn {
+  position: absolute;
+  bottom: -80px;
+  right: 0;
 }
 
 form label,
@@ -333,4 +340,10 @@ footer {
 .wrapper {
   width: 80%;
   margin: 0 auto;
+}
+
+.card-info {
+  background-color: #FAFAFA;
+  border: 4px solid black;
+  padding: 20px;
 }
