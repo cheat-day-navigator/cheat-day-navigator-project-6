@@ -65,7 +65,7 @@ class InputForm extends Component {
     }).then(() => {
       setTimeout(() => {
         this.props.loading(false)
-      }, 1000)
+      }, 3000)
     })
   }
 
