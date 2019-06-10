@@ -123,7 +123,6 @@ header {
   height: 75%;
 }
 
-
 nav {
   background: #ffd134;
   z-index: 1;
@@ -162,7 +161,6 @@ ul.drop-down li {
   height: 90vh;
 } */
 
-
 nav {
   display: flex;
   justify-content: space-between;
@@ -172,6 +170,7 @@ nav {
 .gallery-field {
   display: flex;
   justify-content: center;
+  padding-bottom: 50px;
 }
 
 .item-card img {
@@ -185,15 +184,15 @@ nav {
   width: 50%;
 }
 
-
 .item-card {
-  /* height: 50vh; */
+  height: 80vh;
   width: 100vw;
   max-width: 400px;
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
-  padding: 30px;
+  align-items: center;
+  padding: 10px;
   border: 10px solid #ffd134;
   margin-left: 30px;
   margin-right: 30px;
@@ -204,8 +203,6 @@ nav {
 .item-card .save-item-btn {
   position: absolute;
   bottom: -80px;
-  right: -10px;
-  width: 30%;
 }
 
 form label,
@@ -262,18 +259,16 @@ form input {
   width: 90%;
 }
 
-
 .nutrition-card {
-  /* height: 100%;
-  width: 40%;
+  height: 100%;
+  width: 80%;
   text-align: left;
-  padding: 10px; */
+  padding: 40px;
   border: 2px solid black;
   background: #FAFAFA;
-  /* align-self: center;
-  margin-left: 10px; */
+  align-self: center;
+  margin-left: 40px;
 }
-
 
 .nutrition-card h2 {
   text-transform: capitalize;
@@ -311,6 +306,6 @@ footer {
 }
 
 .wrapper {
-  width: 90%;
+  width: 80%;
   margin: 0 auto;
 }

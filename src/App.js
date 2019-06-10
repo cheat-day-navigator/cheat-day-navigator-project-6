@@ -48,13 +48,13 @@ class App extends Component {
             toggleCard={this.showNutritionCard}
             value={this.state.userInput}
           />
+        </main>
           {this.state.nutritionVisible ? <NutritionCard
             commonData={this.state.nutriData.common}
             brandedData={this.state.nutriData.branded}
             value={this.state.userInput}
             nutrients={this.state.macroNutrients}
           /> : null}
-        </main>
         <Footer />
       </div>
     );
