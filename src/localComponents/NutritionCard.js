@@ -7,10 +7,20 @@ class NutritionCard extends Component {
   constructor() {
     super();
     this.state = {
-      cals: { 'attr_id': 208 },
-      fats: { 'attr_id': 204 },
-      carbs: { 'attr_id': 205 },
-      sugars: { 'attr_id': 269 },
+      nutrientValues: [
+        { attr_id: 208 }, // calories
+        { attr_id: 204 }, // fats
+        { attr_id: 205 }, // carbs
+        { attr_id: 269 }, // sugars
+        { attr_id: 318 }, // vitA 
+        { attr_id: 324 }, // vitD
+        { attr_id: 415 }, // vitB6
+        { attr_id: 401 }, // vitC
+        { attr_id: 323 }, // vitE
+        { attr_id: 304 }, // magnesium
+        { attr_id: 309 }, // zinc
+        { attr_id: 303 } // iron
+      ],
       itemList: []
     }
   }
@@ -20,11 +30,14 @@ class NutritionCard extends Component {
     const processInfo = (id) => {
       return this.props.nutrients.find((i) => i.attr_id === id)
     }
+    let currVal
+    let newVals = []
+    for (let i = 0; i < this.state.nutrientValues.length; i++) {
+      currVal = processInfo(this.state.nutrientValues[i].attr_id)
+      newVals[i] = { attr_id: currVal.attr_id, usda_nutr_desc: currVal.usda_nutr_desc, unit: currVal.unit }
+    }
     this.setState({
-      cals: processInfo(this.state.cals.attr_id),
-      fats: processInfo(this.state.fats.attr_id),
-      carbs: processInfo(this.state.carbs.attr_id),
-      sugars: processInfo(this.state.sugars.attr_id)
+      nutrientValues: newVals
     })
   }
 
@@ -91,16 +104,14 @@ class NutritionCard extends Component {
   render() {
     return (
       <div className="gallery-field">
-        <div className="wrapper">
         <Carousel showThumbs={false} className="wrapper" swipeable={false}>
           {this.props.commonData && this.props.commonData.map((common, i) => {
-            let cals = common.full_nutrients.find((i) => i.attr_id === this.state.cals.attr_id)
-            let fats = common.full_nutrients.find((i) => i.attr_id === this.state.fats.attr_id)
-            let carbs = common.full_nutrients.find((i) => i.attr_id === this.state.carbs.attr_id)
-            let sugars = common.full_nutrients.find((i) => i.attr_id === this.state.sugars.attr_id)
+            let thisValues = this.state.nutrientValues.map((n, id) => {
+              let capturedNutrients = common.full_nutrients.find((key) => key.attr_id === n.attr_id)
+              return capturedNutrients
+            })
             return (
-              <div className="card-info">
-                <div>
+              <div className="wrapper">
                 <div className="item-card" key={`${common.tag_id}-${i}`}>
                   <img src={common.photo.thumb} alt="" />
                   <button>Read More</button>
@@ -109,20 +120,24 @@ class NutritionCard extends Component {
                     <h3>Nutrition Facts</h3>
                     <p className="line">{common && common.serving_qty} {common && common.serving_unit}</p>
                     <ul>
-                      <li><p>Energy</p><p>{cals === undefined ? '0' : cals.value.toFixed(2)} {this.state.cals.unit}</p></li>
-                      <li><p>Total lipid (fat)</p><p>{fats === undefined ? '0' : fats.value.toFixed(2)} {this.state.fats.unit}</p></li>
-                      <li><p>Carbohydrates</p><p>{carbs === undefined ? '0' : carbs.value.toFixed(2)} {this.state.carbs.unit}</p></li>
-                      <li><p>Sugars, total</p><p>{sugars === undefined ? '0' : sugars.value.toFixed(2)} {this.state.sugars.unit}</p></li>
+                      {thisValues.map((n, id) => {
+                        if (n === undefined) {
+                          return null
+                        } else {
+                          return (
+                            <li><p>{this.state.nutrientValues[id].usda_nutr_desc}</p><p>{n.value.toFixed(2)} {this.state.nutrientValues[id].unit}</p></li>
+                          )
+                        }
+                      }
+                      )}
                     </ul>
-                    </div>
-                  <button onClick={this.handleSaveItem} className="save-item-btn" id={i} value={common.tag_name} data-id={this.generateFirebaseId(common.tag_name)}>{this.checkDuplicates(common.tag_name) ? 'Unsave Item' : 'Save Item'}</button>
                   </div>
+                  <button onClick={this.handleSaveItem} className="save-item-btn" id={i} value={common.tag_name} data-id={this.generateFirebaseId(common.tag_name)}>{this.checkDuplicates(common.tag_name) ? 'Unsave Item' : 'Save Item'}</button>
                 </div>
               </div>
             )
           })}
-          </Carousel>
-        </div>
+        </Carousel>
       </div>
     )
   }
