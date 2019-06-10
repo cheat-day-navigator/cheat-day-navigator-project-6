@@ -94,7 +94,7 @@ class NutritionCard extends Component {
     e.preventDefault();
     const position = e.target.id
     const dbRef = firebase.database().ref(`comparedItems/`)
-    if (this.state.compareList.length < 4) {
+    if (this.state.compareList.length < 3) {
       dbRef.push(this.props.commonData[position]);
     } else {
       dbRef.remove();

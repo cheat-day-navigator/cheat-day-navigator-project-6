@@ -24,6 +24,21 @@ class Dropdown extends Component {
             })
 
         });
+
+        const compareRef = firebase.database().ref('comparedItems/');
+        compareRef.on('value', (response) => {
+            const comparedItems = [];
+            const data = response.val();
+
+            for (let key in data) {
+                comparedItems.push(data[key])
+            }
+
+            this.setState({
+                comparedItems
+            })
+
+        });
     }
 
     openDropdown = () => {
@@ -35,8 +50,8 @@ class Dropdown extends Component {
     render() {
         return (
             <ul className="menu" >
-                <li><button onClick={this.openDropdown}>Saved Items</button></li>
-                <div className="counter"><p>{this.state.savedItems && this.state.savedItems.length}</p></div>
+                <li><button onClick={this.openCompareList}>Compare List</button><div className="counter"><p>{this.state.comparedItems && this.state.comparedItems.length}</p></div></li>
+                <li><button onClick={this.openDropdown}>Saved Items</button><div className="counter"><p>{this.state.savedItems && this.state.savedItems.length}</p></div></li>
                 {this.state.listOpen ?
                     <ul className="drop-down">
                         {this.state.savedItems.map((item) => {
