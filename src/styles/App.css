@@ -131,6 +131,12 @@ nav {
   right: 0;
 }
 
+nav ul.menu {
+  width: 400px;
+  display: flex;
+  justify-content: space-around;
+}
+
 ul button {
   background: none;
   border: none;
@@ -138,24 +144,43 @@ ul button {
   position: relative;
 }
 
-ul.drop-down {
-  position: absolute;
+ul.saved-items {
   top: 60px;
   right: 60px;
+  max-height: 200px;
+}
+
+ul.compared-items {
+  height: auto;
+  top: 60px;
+  right: 270px;
+  padding-bottom: 20px;
+}
+
+ul.compared-items li:last-of-type{
+  background: #FAFAFA;
+  margin-top: 10px;
+  
+}
+
+ul.drop-down {
+  position: absolute;
   background: #9f2718;
   color: #FAFAFA;
   width: 150px;
   padding: 15px;
   height: auto;
-  max-height: 200px;
   overflow: auto;
 }
 
-ul.drop-down li {
+ul.drop-down li,
+.menu li {
   border-bottom: 0;
-  padding: 15px;
 }
 
+ul.drop-down li {
+  padding: 15px;
+}
 /* main {
   height: 90vh;
 } */
@@ -184,7 +209,7 @@ nav {
 }
 
 .item-card {
-  height: 80vh;
+  height: 400px;
   width: 100vw;
   max-width: 400px;
   display: flex;
@@ -201,6 +226,13 @@ nav {
 .item-card .save-item-btn {
   position: absolute;
   bottom: -80px;
+  left: 0;
+}
+
+.item-card .compare-btn {
+  position: absolute;
+  bottom: -80px;
+  right: 0;
 }
 
 form label,
@@ -287,7 +319,7 @@ li {
   justify-content: space-between;
 }
 
-li:not(:last-of-type) {
+.item-card li:not(:last-of-type) {
   border-bottom: 2px solid black;
 }
 
