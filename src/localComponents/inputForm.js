@@ -55,6 +55,7 @@ class InputForm extends Component {
         this.props.data(queryResult)
       } else {
         this.clearForm();
+        this.props.loading(false)
         return Swal.fire({
           title: 'Oops!',
           text: `We can't find that food! Try something else!`,

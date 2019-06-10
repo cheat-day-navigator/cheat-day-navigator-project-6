@@ -6,6 +6,7 @@ import NutritionCard from './localComponents/NutritionCard'
 import Footer from './localComponents/Footer'
 import MakeCall from './globalComponents/makeCall'
 import LoadingModal from './localComponents/loadingModal'
+import Swal from 'sweetalert2'
 
 class App extends Component {
   constructor() {
@@ -36,6 +37,17 @@ class App extends Component {
           loading: false
         })
       }, 1000)
+    }).catch(error => {
+      console.log(error)
+      this.setState({
+        loading: false
+      })
+      return Swal.fire({
+        title: 'Uh oh!',
+        text: `Something happened on our end! Please try reloading!`,
+        type: 'error',
+        confirmButtonText: 'Okay'
+      })
     })
   }
 

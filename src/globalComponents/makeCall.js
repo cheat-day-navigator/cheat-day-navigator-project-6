@@ -53,7 +53,7 @@ const MakeCall = (searchtype = `simpleSearch`, appQuery = `chicken nuggets`) => 
       return response.data
     }).catch(error => {  // If nothing matched, something went wrong on your end!
       console.log(error)
-      warningFire(`Something went wrong. Please wait a moment, and try your search again!`)
+      warningFire(`Something went wrong on our end! Please wait a moment, and try your search again!`)
     })
   )
 }
