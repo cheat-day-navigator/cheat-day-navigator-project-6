@@ -148,11 +148,20 @@ ul button {
 ul.saved-items {
   top: 60px;
   right: 60px;
+  max-height: 200px;
 }
 
 ul.compared-items {
+  height: auto;
   top: 60px;
   right: 270px;
+  padding-bottom: 20px;
+}
+
+ul.compared-items li:last-of-type{
+  background: #FAFAFA;
+  margin-top: 10px;
+  
 }
 
 ul.drop-down {
@@ -162,7 +171,6 @@ ul.drop-down {
   width: 150px;
   padding: 15px;
   height: auto;
-  max-height: 200px;
   overflow: auto;
 }
 
