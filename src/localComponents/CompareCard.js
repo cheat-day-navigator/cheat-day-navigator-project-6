@@ -52,14 +52,14 @@ class CompareCard extends Component {
 
     render() {
         return (
-            <div className="wrapper">
+            <div className="compare-container">
                 {this.state.newList && this.state.newList.map((element, i) => {
                     let thisValues = this.state.nutrientValues.map((n, id) => {
                         let capturedNutrients = element.data.full_nutrients.find((key) => key.attr_id === n.attr_id)
                         return capturedNutrients
                     })
                     return (
-                        <div className="compare-container">
+                        <div>
                             <div className="nutrition-card">
                                 <h2>{element && element.data.tag_name}</h2>
                                 <h3>Nutrition Facts</h3>
