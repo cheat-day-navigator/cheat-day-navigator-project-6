@@ -278,6 +278,7 @@ form input {
   background: #FAFAFA;
   align-self: center;
   margin-left: 40px;
+  overflow-y: scroll;
   font-size: 1.1rem;
 }
 

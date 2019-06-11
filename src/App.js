@@ -6,7 +6,10 @@ import NutritionCard from './localComponents/NutritionCard'
 import Footer from './localComponents/Footer'
 import MakeCall from './globalComponents/makeCall'
 import LoadingModal from './localComponents/loadingModal'
-import Swal from 'sweetalert2';
+import Swal from 'sweetalert2'
+import CompareCard from './localComponents/CompareCard'
+import firebase from 'firebase'
+import { BrowserRouter as Router, Link, Route } from "react-router-dom";
 
 class App extends Component {
   constructor() {
@@ -17,7 +20,9 @@ class App extends Component {
       userInput: '',
       nutritionVisible: false,
       macroNutrients: {},
-      loading: false
+      loading: false,
+      showCompare: false,
+      compareList: []
     }
   }
 
@@ -49,6 +54,29 @@ class App extends Component {
         confirmButtonText: 'Okay'
       })
     })
+
+    const dbRef = firebase.database().ref('comparedItems/');
+    dbRef.on('value', (response) => {
+      const compareList = [];
+      const data = response.val();
+
+      for (let key in data) {
+        compareList.push({
+          data: data[key]
+        })
+      }
+
+      this.setState({
+        compareList
+      })
+    })
+  }
+
+  showCompareResult = () => {
+    this.setState({
+      showCompare: true,
+      nutritionVisible: false
+    })
   }
 
   callBackData = (d) => {
@@ -67,15 +95,19 @@ class App extends Component {
     })
   }
 
+
+
   render() {
     return (
       <div className="App">
         {this.state.loading === true ?
           <LoadingModal />
           : null}
-        {console.log(this.state.macroNutrients)}
-        <Header />
-        <main>
+        {/* {console.log(this.state.macroNutrients)} */}
+        <Header
+          onCompareClick={this.showCompareResult}
+        />
+        <main className="wrapper">
           <InputForm
             data={this.callBackData}
             toggleCard={this.showNutritionCard}
@@ -83,12 +115,18 @@ class App extends Component {
             loading={this.loadHandler}
           />
         </main>
-          {this.state.nutritionVisible ? <NutritionCard
-            commonData={this.state.nutriData.common}
-            brandedData={this.state.nutriData.branded}
-            value={this.state.userInput}
+        {this.state.nutritionVisible ? <NutritionCard
+          commonData={this.state.nutriData.common}
+          brandedData={this.state.nutriData.branded}
+          value={this.state.userInput}
+          nutrients={this.state.macroNutrients}
+        /> : null}
+        {this.state.showCompare ?
+          <CompareCard
+            compareList={this.state.compareList}
             nutrients={this.state.macroNutrients}
-          /> : null}
+          /> : null
+        }
         <Footer />
       </div>
     );
