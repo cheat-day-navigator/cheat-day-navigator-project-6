@@ -17,6 +17,11 @@
 .carousel .control-arrow:hover {
   opacity: 1;
 }
+
+.carousel-results {
+  margin-bottom: 30px;
+}
+
 .carousel .control-arrow:before,
 .carousel.carousel-slider .control-arrow:before {
   margin: 0 5px;

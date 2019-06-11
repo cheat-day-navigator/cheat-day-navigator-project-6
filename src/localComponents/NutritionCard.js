@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import firebase from './../globalComponents/firebase.js';
-import { Carousel } from 'react-responsive-carousel';
-import "./../styles/carousel.css";
+import firebase from './../globalComponents/firebase'
+import DetailedCards from './detailedNutritionCard'
+import SimpleCards from './foodSearch'
 
 class NutritionCard extends Component {
   constructor() {
@@ -9,20 +9,34 @@ class NutritionCard extends Component {
     this.state = {
       nutrientValues: [
         { attr_id: 208 }, // calories
-        { attr_id: 204 }, // fats
         { attr_id: 205 }, // carbs
+        { attr_id: 204 }, // fats
+        { attr_id: 203 }, // proteins
+        { attr_id: 307 }, // sodium
         { attr_id: 269 }, // sugars
+        { attr_id: 301 }, // calcium
         { attr_id: 318 }, // vitA
-        { attr_id: 324 }, // vitD
         { attr_id: 415 }, // vitB6
         { attr_id: 401 }, // vitC
+        { attr_id: 324 }, // vitD
         { attr_id: 323 }, // vitE
+        { attr_id: 303 }, // iron
         { attr_id: 304 }, // magnesium
-        { attr_id: 309 }, // zinc
-        { attr_id: 303 } // iron
+        { attr_id: 309 } // zinc
+      ],
+      nutrientValuesSimple: [
+        { attr_id: 318 }, // vitA
+        { attr_id: 415 }, // vitB6
+        { attr_id: 401 }, // vitC
+        { attr_id: 324 }, // vitD
+        { attr_id: 323 }, // vitE
+        { attr_id: 303 }, // iron
+        { attr_id: 304 }, // magnesium
+        { attr_id: 309 } // zinc
       ],
       itemList: [],
-      compareList: []
+      compareList: [],
+      detailed: false
     }
   }
 
@@ -37,10 +51,28 @@ class NutritionCard extends Component {
       currVal = processInfo(this.state.nutrientValues[i].attr_id)
       newVals[i] = { attr_id: currVal.attr_id, usda_nutr_desc: currVal.usda_nutr_desc, unit: currVal.unit }
     }
+    let newVals2 = []
+    for (let i = 0; i < this.state.nutrientValuesSimple.length; i++) {
+      currVal = processInfo(this.state.nutrientValuesSimple[i].attr_id)
+      newVals2[i] = { attr_id: currVal.attr_id, usda_nutr_desc: currVal.usda_nutr_desc, unit: currVal.unit }
+    }
     this.setState({
-      nutrientValues: newVals
+      nutrientValues: newVals,
+      nutrientValuesSimple: newVals2
     })
     this.retrieveCompareList();
+  }
+
+  readMoreToggle = () => {
+    if (this.state.detailed === true) {
+      this.setState({
+        detailed: false
+      })
+    } else {
+      this.setState({
+        detailed: true
+      })
+    }
   }
 
   retrieveFirebase = () => {
@@ -136,49 +168,31 @@ class NutritionCard extends Component {
     return (
       <div className="gallery-field">
         <div className="wrapper">
-          <Carousel showThumbs={false} className="wrapper" swipeable={false} useKeyboardArrows>
-            {this.props.commonData && this.props.commonData.map((common, i) => {
-              let thisValues = this.state.nutrientValues.map((n, id) => {
-                let capturedNutrients = common.full_nutrients.find((key) => key.attr_id === n.attr_id)
-                return capturedNutrients
-              })
-              return (
-                <div className="inner-card">
-                  <div className="card-info">
-                    <div className="item-card" key={`${common.tag_id}-${i}`}>
-                      <img src={common.photo.thumb} alt="" />
-                      <button>Read More</button>
-                      <div className="nutrition-card">
-                        <h2>{common && common.tag_name}</h2>
-                        <h3>Nutrition Facts</h3>
-                        <p className="line">{common && common.serving_qty} {common && common.serving_unit}</p>
-                        <ul>
-                          {thisValues.map((n, id) => {
-                            if (n === undefined) {
-                              return null
-                            } else {
-                              return (
-                                <li><p>{this.state.nutrientValues[id].usda_nutr_desc}</p><p>{n.value.toFixed(2)} {this.state.nutrientValues[id].unit}</p></li>
-                              )
-                            }
-                          }
-                          )}
-                        </ul>
-                      </div>
-                      <div>
-                      <button onClick={this.handleSaveItem} className="save-item-btn" id={i} value={common.tag_name} data-id={this.generateFirebaseId(common.tag_name)}>{this.checkDuplicates(common.tag_name) ? 'Unsave Item' : 'Save Item'}</button>
-                      <button className="compare-btn" onClick={this.addToCompare} id={i} value={common.tag_name}>Add to Compare List</button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              )
-            })}
-          </Carousel>
+          <SimpleCards
+            commonData={this.props.commonData}
+            nutrientValues={this.state.nutrientValuesSimple}
+            handleSaveItem={this.handleSaveItem}
+            generateFirebaseId={this.generateFirebaseId}
+            checkDuplicates={this.checkDuplicates}
+            addToCompare={this.addToCompare}
+            readMoreToggle={this.readMoreToggle}
+            detailed={this.state.detailed}
+          />
+          <DetailedCards
+            commonData={this.props.commonData}
+            nutrientValues={this.state.nutrientValues}
+            handleSaveItem={this.handleSaveItem}
+            generateFirebaseId={this.generateFirebaseId}
+            checkDuplicates={this.checkDuplicates}
+            addToCompare={this.addToCompare}
+            readMoreToggle={this.readMoreToggle}
+            detailed={this.state.detailed}
+          />
         </div>
       </div>
     )
   }
 }
+
 
 export default NutritionCard;

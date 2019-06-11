@@ -1,0 +1,107 @@
+.simple-results {
+  border: 3px solid black;
+  overflow-y: auto;
+  height: 500px;
+  width: 100%;
+  margin-bottom: 30px;
+  text-align: left;
+}
+
+.result-list {
+  border-bottom: 2px dotted black;
+  display: flex;
+  flex-wrap: wrap;
+  position: relative;
+  padding: 15px;
+  justify-content: space-between;
+}
+
+.result-list:nth-child(2n) {
+  background: #ded; /* How I'm feeling rn */
+}
+
+.result-list:nth-child(2n - 1) {
+  background: #f1fae8;
+}
+
+.item-header {
+  flex-basis: 50%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  flex-direction: column;
+}
+
+.item-header h2 {
+  height: 40px;
+  text-transform: capitalize;
+}
+
+.item-header p {
+  padding-left: 15px;
+  height: 30px;
+}
+
+.thumb-container {
+  display: flex;
+  padding-left: 20px;
+  height: calc(100% - 70px);
+  align-items: center;
+}
+
+.thumb-container img {
+  border-radius: 100px;
+  max-height: 120px;
+}
+
+.nutrition-card-simple {
+  flex-basis: calc(50% - 6px);
+}
+
+button {
+  border: none;
+  background: #9f2718;
+  color: #fafafa;
+  font-size: 1.2rem;
+  padding: 15px 30px;
+}
+
+.buttons-searched {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+@media screen and (max-width: 1024px) {
+  .result-list {
+    flex-direction: column;
+  }
+
+  .result-list p {
+    font-size: 1rem;
+  }
+
+  .item-header {
+    min-height: 120px;
+  }
+
+  .thumb-container {
+    align-self: flex-end;
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    height: 120px;
+  }
+
+  .buttons-searched {
+    flex-direction: column;
+    max-width: 270px;
+    align-self: center;
+    width: 70%;
+  }
+
+  button {
+    margin-top: 20px;
+  }
+}
