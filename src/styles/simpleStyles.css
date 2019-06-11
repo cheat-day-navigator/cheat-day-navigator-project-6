@@ -1,0 +1,67 @@
+.simple-results {
+  border: 3px solid black;
+  overflow-y: auto;
+  height: 500px;
+  width: 100%;
+}
+
+.result-list {
+  border-bottom: 2px dotted black;
+  display: flex;
+  flex-wrap: wrap;
+  position: relative;
+  padding: 15px;
+  justify-content: space-between;
+}
+
+.result-list:nth-child(2n) {
+  background: #aaa;
+}
+
+.result-list:nth-child(2n - 1) {
+  background: #f1fae8;
+}
+
+.item-header {
+  flex-basis: 50%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+}
+
+.item-header h2 {
+  max-width: 75%;
+  max-height: 100px;
+}
+
+.item-header p {
+  height: 50px;
+  padding-top: 9px;
+  padding-left: 15px;
+  max-width: 25%;
+}
+
+.thumb-container {
+  height: calc(100% - 100px);
+  align-self: flex-end;
+  width: 100%;
+  display: flex;
+  padding-left: 20px;
+  padding-bottom: 30px;
+}
+
+.thumb-container img {
+  width: 150px;
+}
+
+.nutrition-card-simple {
+  flex-basis: calc(50% - 6px);
+}
+
+button {
+  border: none;
+  background: #9f2718;
+  color: #fafafa;
+  font-size: 1.2rem;
+  padding: 15px 30px;
+}

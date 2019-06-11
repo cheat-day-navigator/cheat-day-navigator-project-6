@@ -1,11 +1,12 @@
 import React from 'react'
 import ResultsPaginator from './foodSearchPage'
+import './../styles/simpleStyles.css'
 
 const SimpleCards = (props) => {
   if (!(props.detailed)) {
     return (
-      <div className="resultsList">
-        <ResultsPaginator 
+      <React.Fragment>
+        <ResultsPaginator
           commonData={props.commonData}
           nutrientValues={props.nutrientValues}
           handleSaveItem={props.handleSaveItem}
@@ -14,9 +15,9 @@ const SimpleCards = (props) => {
           addToCompare={props.addToCompare}
           readMoreToggle={props.readMoreToggle}
           detailed={props.detailed} />
-      </div>
+      </React.Fragment>
     )
-  } else { return null}
+  } else { return null }
 }
 
 export default SimpleCards;

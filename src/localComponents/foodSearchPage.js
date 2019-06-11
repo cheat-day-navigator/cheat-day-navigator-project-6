@@ -11,11 +11,13 @@ const ResultsPaginator = (props) => {
           })
           return (
             <div className="result-list" key={`${common.tag_id}-${i}`}>
-              <h2>{common && common.tag_name}</h2>
-              <div className="thumb-container">
-                <img src={common.photo.thumb} alt="" />
+              <div className="item-header">
+                <h2>{common && common.tag_name}</h2>
+                <p className="line">{common && common.serving_qty} ({common && common.serving_unit})</p>
+                <div className="thumb-container">
+                  <img src={common.photo.thumb} alt="" />
+                </div>
               </div>
-              <p className="line">{common && common.serving_qty} ({common && common.serving_unit})</p>
               <div className="nutrition-card-simple">
                 <h3>Nutrition Facts</h3>
                 <ul>
@@ -31,8 +33,10 @@ const ResultsPaginator = (props) => {
                   )}
                 </ul>
               </div>
-              <button onClick={props.handleSaveItem} className="save-item-btn" id={i} value={common.tag_name} data-id={props.generateFirebaseId(common.tag_name)}>{props.checkDuplicates(common.tag_name) ? 'Unsave Item' : 'Save Item'}</button>
-              <button className="compare-btn" onClick={props.addToCompare} id={i} value={common.tag_name}>Add to Compare List</button>
+              <div className="buttons-searched">
+                <button onClick={props.handleSaveItem} className="save-item-btn" id={i} value={common.tag_name} data-id={props.generateFirebaseId(common.tag_name)}>{props.checkDuplicates(common.tag_name) ? 'Unsave Item' : 'Save Item'}</button>
+                <button className="compare-btn" onClick={props.addToCompare} id={i} value={common.tag_name}>Add to Compare List</button>
+              </div>
             </div>
           )
         })}
