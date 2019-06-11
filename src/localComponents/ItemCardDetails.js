@@ -5,6 +5,7 @@ const ItemCardDetails = (props) => {
     console.log(props.details)
     return(
         <ul>
+        <li>test</li>
             {props.details && props.details.map((item) => {
                 return(
                     <div className="card2">

@@ -93,7 +93,7 @@ class App extends Component {
             <LoadingModal />
             : null}
           {/* {console.log(this.state.macroNutrients)} */}
-          <Header callbackHell = {this.callBackFirebase}/>
+          <Header callbackHell={this.callBackFirebase}/>
           
           <main>
             <InputForm
@@ -102,7 +102,7 @@ class App extends Component {
               value={this.state.userInput}
               loading={this.loadHandler}
             />
-          <Route path ="/:tagID" render = { () => { return (<ItemCardDetails details={this.dropdownItems}/>)}}/>  
+          <Route exact path ="/:tagID" render={ () => { return (<ItemCardDetails details={this.state.dropdownItems}/>)}}/>  
           </main>
             {this.state.nutritionVisible ? <NutritionCard
               commonData={this.state.nutriData.common}

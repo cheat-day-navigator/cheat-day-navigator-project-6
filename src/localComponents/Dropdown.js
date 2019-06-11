@@ -57,7 +57,7 @@ class Dropdown extends Component {
                                     )    
                                 })} */}
                                 <Route path ="/" render = { () => { return (<DropdownLinks links={this.state.savedItems} />)}}/> 
-                                <Route path ="/:tagID" render = { () => { return (<ItemCardDetails details={this.state.savedItems}/>)}}/>  
+                                {/* <Route path ="/:tagID" render = { () => { return (<ItemCardDetails details={this.state.savedItems}/>)}}/>   */}
                             </ul>
                         :null}
                     </ul>
