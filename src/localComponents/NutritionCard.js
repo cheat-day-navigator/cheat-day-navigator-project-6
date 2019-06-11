@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import firebase from './../globalComponents/firebase.js';
-import { Carousel } from 'react-responsive-carousel';
-import "./../styles/carousel.css";
+import firebase from './../globalComponents/firebase'
+import DetailedCards from './detailedNutritionCard'
+import SimpleCards from './foodSearch'
 
 class NutritionCard extends Component {
   constructor() {
@@ -22,7 +22,8 @@ class NutritionCard extends Component {
         { attr_id: 303 } // iron
       ],
       itemList: [],
-      compareList: []
+      compareList: [],
+      detailed: false
     }
   }
 
@@ -41,6 +42,18 @@ class NutritionCard extends Component {
       nutrientValues: newVals
     })
     this.retrieveCompareList();
+  }
+
+  readMoreToggle = () => {
+    if (this.state.detailed === true) {
+      this.setState({
+        detailed: false
+      })
+    } else {
+      this.setState({
+        detailed: true
+      })
+    }
   }
 
   retrieveFirebase = () => {
@@ -137,47 +150,30 @@ class NutritionCard extends Component {
     return (
       <div className="gallery-field">
         <div className="wrapper">
-          <Carousel showThumbs={false} className="wrapper" swipeable={false} useKeyboardArrows>
-            {this.props.commonData && this.props.commonData.map((common, i) => {
-              let thisValues = this.state.nutrientValues.map((n, id) => {
-                let capturedNutrients = common.full_nutrients.find((key) => key.attr_id === n.attr_id)
-                return capturedNutrients
-              })
-              return (
-                <div className="wrapper">
-                  <div className="card-info">
-                    <div className="item-card" key={`${common.tag_id}-${i}`}>
-                      <img src={common.photo.thumb} alt="" />
-                      <button>Read More</button>
-                      <div className="nutrition-card">
-                        <h2>{common && common.tag_name}</h2>
-                        <h3>Nutrition Facts</h3>
-                        <p className="line">{common && common.serving_qty} {common && common.serving_unit}</p>
-                        <ul>
-                          {thisValues.map((n, id) => {
-                            if (n === undefined) {
-                              return null
-                            } else {
-                              return (
-                                <li><p>{this.state.nutrientValues[id].usda_nutr_desc}</p><p>{n.value.toFixed(2)} {this.state.nutrientValues[id].unit}</p></li>
-                              )
-                            }
-                          }
-                          )}
-                        </ul>
-                      </div>
-                      <button onClick={this.handleSaveItem} className="save-item-btn" id={i} value={common.tag_name} data-id={this.generateFirebaseId(common.tag_name)}>{this.checkDuplicates(common.tag_name) ? 'Unsave Item' : 'Save Item'}</button>
-                      <button className="compare-btn" onClick={this.addToCompare} id={i} value={common.tag_name}>Add to Compare List</button>
-                    </div>
-                  </div>
-                </div>
-              )
-            })}
-          </Carousel>
+          <SimpleCards
+            commonData={this.props.commonData}
+            handleSaveItem={this.handleSaveItem}
+            generateFirebaseId={this.generateFirebaseId}
+            checkDuplicates={this.checkDuplicates}
+            addToCompare={this.addToCompare}
+            readMoreToggle={this.readMoreToggle}
+            detailed={this.state.detailed}
+          />
+          <DetailedCards
+            commonData={this.props.commonData}
+            nutrientValues={this.state.nutrientValues}
+            handleSaveItem={this.handleSaveItem}
+            generateFirebaseId={this.generateFirebaseId}
+            checkDuplicates={this.checkDuplicates}
+            addToCompare={this.addToCompare}
+            readMoreToggle={this.readMoreToggle}
+            detailed={this.state.detailed}
+          />
         </div>
       </div>
     )
   }
 }
+
 
 export default NutritionCard;
