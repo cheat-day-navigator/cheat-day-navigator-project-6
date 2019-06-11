@@ -7,6 +7,15 @@ import Footer from './localComponents/Footer'
 import MakeCall from './globalComponents/makeCall'
 import LoadingModal from './localComponents/loadingModal'
 import Swal from 'sweetalert2'
+import {
+  BrowserRouter as Router,
+  Route,
+  // Link,
+  // NavLink
+} from 'react-router-dom';
+// import Dropdown from "./Dropdown.js";
+import ItemCardDetails from './localComponents/ItemCardDetails'
+
 
 class App extends Component {
   constructor() {
@@ -17,8 +26,10 @@ class App extends Component {
       userInput: '',
       nutritionVisible: false,
       macroNutrients: {},
-      loading: false
+      loading: false,
+      dropdownItems: []
     }
+    console.log(this.state.dropdownItems);
   }
 
 
@@ -67,30 +78,43 @@ class App extends Component {
     })
   }
 
+  callBackFirebase = (e) => {
+    this.setState({
+      dropdownItems: e
+    })
+  }
+
   render() {
     return (
-      <div className="App">
-        {this.state.loading === true ?
-          <LoadingModal />
-          : null}
-        {console.log(this.state.macroNutrients)}
-        <Header />
-        <main>
-          <InputForm
-            data={this.callBackData}
-            toggleCard={this.showNutritionCard}
-            value={this.state.userInput}
-            loading={this.loadHandler}
-          />
-        </main>
-          {this.state.nutritionVisible ? <NutritionCard
-            commonData={this.state.nutriData.common}
-            brandedData={this.state.nutriData.branded}
-            value={this.state.userInput}
-            nutrients={this.state.macroNutrients}
-          /> : null}
-        <Footer />
-      </div>
+      <Router>
+
+        <div className="App">
+          {this.state.loading === true ?
+            <LoadingModal />
+            : null}
+          {/* {console.log(this.state.macroNutrients)} */}
+          <Header callbackHell = {this.callBackFirebase}/>
+          
+          <main>
+            <InputForm
+              data={this.callBackData}
+              toggleCard={this.showNutritionCard}
+              value={this.state.userInput}
+              loading={this.loadHandler}
+            />
+          <Route path ="/:tagID" render = { () => { return (<ItemCardDetails details={this.dropdownItems}/>)}}/>  
+          </main>
+            {this.state.nutritionVisible ? <NutritionCard
+              commonData={this.state.nutriData.common}
+              brandedData={this.state.nutriData.branded}
+              value={this.state.userInput}
+              nutrients={this.state.macroNutrients}
+            /> : null}
+          <Footer />
+        </div>
+
+        
+      </Router>
     );
   }
 }

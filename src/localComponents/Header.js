@@ -2,11 +2,16 @@ import React from 'react';
 import Dropdown from './Dropdown.js';
 
 const Header = () => {
+
+    const callback = (e) => {
+        this.props.callbackHell(e)
+    }
+
     return (
         <header>
             <nav>
                 <h4>Superfood Navigation</h4>
-                <Dropdown />
+                <Dropdown callback = {callback}/>
             </nav>
             <div className="title-container">
                 <h1>Superfood Navigation

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import firebase from './../globalComponents/firebase.js';
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from 'react-responsive-carousel';
+// import {Link} from 'react-router-dom';
 
 class NutritionCard extends Component {
   constructor() {
