@@ -20,21 +20,6 @@ class Dropdown extends Component {
     }
 
     componentDidMount() {
-        const dbRef = firebase.database().ref('savedItems/');
-        dbRef.on('value', (response) => {
-            const savedItems = [];
-            const data = response.val();
-
-            for (let key in data) {
-                savedItems.push(data[key])
-                // console.log(data)
-            }
-
-            this.setState({
-                savedItems
-                // data
-            })
-        });
 
         const compareRef = firebase.database().ref('comparedItems/');
         compareRef.on('value', (response) => {
@@ -55,10 +40,8 @@ class Dropdown extends Component {
 
     openDropdown = () => {
         this.setState({
-            listOpen: !this.state.listOpen    
+            listOpen: !this.state.listOpen
         })
-
-        this.props.callback(this.state.savedItems)
     }
 
     openCompare = () => {
@@ -80,12 +63,12 @@ class Dropdown extends Component {
                         })}
                         <li><button onClick={this.props.onCompareClick} className="compare-btn">Compare!</button></li>
                     </ul> : null}
-                <li><button onClick={this.openDropdown}>Saved Items</button><div className="counter"><p>{this.state.savedItems && this.state.savedItems.length}</p></div></li>
+                <li><button onClick={this.openDropdown}>Saved Items</button><div className="counter"><p>{this.props.savedItems && this.props.savedItems.length}</p></div></li>
                 {this.state.listOpen ?
-                            <ul className="drop-down">
-                                <Route path ="/" render = { () => { return (<DropdownLinks links={this.state.savedItems} />)}}/> 
-                            </ul>
-                        :null}
+                    <ul className="drop-down">
+                        <Route path="/" render={() => { return (<DropdownLinks links={this.props.savedItems} />) }} />
+                    </ul>
+                    : null}
             </ul>
         )
     }

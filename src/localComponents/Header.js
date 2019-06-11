@@ -13,9 +13,10 @@ const Header = (props) => {
             <nav>
                 <h4>Superfood Navigation</h4>
                 <Dropdown
-                    callback = {callback}
+                    callback={callback}
                     onCompareClick={props.onCompareClick}
                     compareList={props.compareList}
+                    savedItems={props.savedItems}
                 />
             </nav>
             <div className="title-container">
