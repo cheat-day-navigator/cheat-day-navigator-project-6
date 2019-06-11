@@ -7,6 +7,7 @@ import Footer from './localComponents/Footer'
 import MakeCall from './globalComponents/makeCall'
 import LoadingModal from './localComponents/loadingModal'
 import Swal from 'sweetalert2'
+import ItemCardDetails from './localComponents/ItemCardDetails'
 import CompareCard from './localComponents/CompareCard'
 import firebase from 'firebase'
 import { BrowserRouter as Router, Link, Route } from "react-router-dom";
@@ -21,6 +22,7 @@ class App extends Component {
       nutritionVisible: false,
       macroNutrients: {},
       loading: false,
+      dropdownItems: [],
       showCompare: false,
       compareList: []
     }
@@ -95,10 +97,15 @@ class App extends Component {
     })
   }
 
-
+  callBackFirebase = (e) => {
+    this.setState({
+      dropdownItems: e
+    })
+  }
 
   render() {
     return (
+      <Router>
       <div className="App">
         {this.state.loading === true ?
           <LoadingModal />
@@ -106,6 +113,7 @@ class App extends Component {
         {/* {console.log(this.state.macroNutrients)} */}
         <Header
           onCompareClick={this.showCompareResult}
+          callbackHell = {this.callBackFirebase}
         />
         <main>
           <InputForm
@@ -114,6 +122,12 @@ class App extends Component {
             value={this.state.userInput}
             loading={this.loadHandler}
           />
+          <Route path ="/:tagID" render = { (props) => { return (
+          <ItemCardDetails 
+            {...props}
+            details={this.state.dropdownItems}
+            nutrients={this.state.macroNutrients}
+          />)}}/>
         </main>
         {this.state.nutritionVisible ? <NutritionCard
           commonData={this.state.nutriData.common}
@@ -129,6 +143,7 @@ class App extends Component {
         }
         <Footer />
       </div>
+      </Router>
     );
   }
 }
