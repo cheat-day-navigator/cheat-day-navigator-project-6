@@ -113,7 +113,6 @@ class NutritionCard extends Component {
       dbRef.push(this.props.commonData[position]);
     }
 
-    console.log(this.state.compareList.length)
   }
 
   handleSaveItem = (e) => {

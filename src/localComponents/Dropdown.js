@@ -1,5 +1,14 @@
 import React, { Component } from 'react';
 import firebase from './../globalComponents/firebase.js';
+import {
+    // BrowserRouter as Router,
+    Route,
+    // Link,
+    // NavLink
+} from 'react-router-dom';
+import DropdownLinks from "./DropdownLinks.js";
+import ItemCardDetails from "./ItemCardDetails.js"
+
 
 class Dropdown extends Component {
     constructor(props) {
@@ -18,12 +27,13 @@ class Dropdown extends Component {
 
             for (let key in data) {
                 savedItems.push(data[key])
+                // console.log(data)
             }
 
             this.setState({
                 savedItems
+                // data
             })
-
         });
 
         const compareRef = firebase.database().ref('comparedItems/');
@@ -42,10 +52,13 @@ class Dropdown extends Component {
         });
     }
 
+
     openDropdown = () => {
         this.setState({
-            listOpen: !this.state.listOpen
+            listOpen: !this.state.listOpen    
         })
+
+        this.props.callback(this.state.savedItems)
     }
 
     openCompare = () => {
@@ -69,14 +82,10 @@ class Dropdown extends Component {
                     </ul> : null}
                 <li><button onClick={this.openDropdown}>Saved Items</button><div className="counter"><p>{this.state.savedItems && this.state.savedItems.length}</p></div></li>
                 {this.state.listOpen ?
-                    <ul className="drop-down saved-items">
-                        {this.state.savedItems.map((item) => {
-                            return (
-                                <li>{item.food_name}</li>
-                            )
-                        })}
-                    </ul>
-                    : null}
+                            <ul className="drop-down">
+                                <Route path ="/" render = { () => { return (<DropdownLinks links={this.state.savedItems} />)}}/> 
+                            </ul>
+                        :null}
             </ul>
         )
     }

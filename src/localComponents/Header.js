@@ -3,11 +3,17 @@ import Dropdown from './Dropdown.js';
 import { tsPropertySignature } from '@babel/types';
 
 const Header = (props) => {
+
+    const callback = (e) => {
+        props.callbackHell(e)
+    }
+
     return (
         <header>
             <nav>
                 <h4>Superfood Navigation</h4>
                 <Dropdown
+                    callback = {callback}
                     onCompareClick={props.onCompareClick}
                     compareList={props.compareList}
                 />
