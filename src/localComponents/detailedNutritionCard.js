@@ -16,7 +16,6 @@ const DetailedCards = (props) => {
               <div className="card-info">
                 <div className="item-card" key={`${common.tag_id}-${i}`}>
                   <img src={common.photo.thumb} alt="" />
-                  <button onClick={props.readMoreToggle}>Read More</button>
                   <div className="nutrition-card">
                     <h2>{common && common.tag_name}</h2>
                     <h3>Nutrition Facts</h3>
@@ -34,8 +33,8 @@ const DetailedCards = (props) => {
                       )}
                     </ul>
                   </div>
-                  <button onClick={props.handleSaveItem} className="save-item-btn" id={i} value={common.tag_name} data-id={props.generateFirebaseId(common.tag_name)}>{props.checkDuplicates(common.tag_name) ? 'Unsave Item' : 'Save Item'}</button>
-                  <button className="compare-btn" onClick={props.addToCompare} id={i} value={common.tag_name}>Add to Compare List</button>
+                  <button onClick={this.handleSaveItem} className="save-item-btn" id={i} value={common.tag_name} data-id={this.generateFirebaseId(common.tag_name)}>{this.checkDuplicates(common.tag_name) ? 'Unsave Item' : 'Save Item'}</button>
+                  <button className="compare-btn" onClick={this.addToCompare} id={i} value={common.tag_name}>Add to Compare List</button>
                 </div>
               </div>
             </div>

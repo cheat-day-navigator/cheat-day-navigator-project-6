@@ -57,18 +57,7 @@ header {
   top: -5vh;
   left: 10vw;
   border-radius: 50%;
-}
-
-.title-info-container {
-  position: absolute;
-  top: 40vh;
-  left: 50vw;
-  width: 200px;
-  height: 200px;
-  border-radius: 50%;
-  text-align: left;
-  border: 15px solid  #9f2718;
-  padding: 60px;
+  background-color: rgba(100, 0, 0, 0.6);
 }
 
 .title-info-container h3 {
@@ -92,10 +81,7 @@ header {
   transform: rotate(45deg);
 }
 
-.top-lines .bar {
-  background: #ffd134;
-  width: 17px;
-}
+
 
 .bottom-lines {
   top: 275px;
@@ -103,10 +89,6 @@ header {
   width: 200px;
   height: 200px;
   
-}
-
-.bottom-lines .bar {
-  background: #9f2718;
 }
 
 .bar {
@@ -204,9 +186,7 @@ nav {
   width: 50%;
 }
 
-.item-card button {
-  width: 50%;
-}
+
 
 .item-card {
   height: 400px;
@@ -227,12 +207,14 @@ nav {
   position: absolute;
   bottom: -80px;
   left: 0;
+  padding: 15px;
 }
 
 .item-card .compare-btn {
   position: absolute;
   bottom: -80px;
   right: 0;
+  padding: 15px;
 }
 
 form label,
@@ -296,6 +278,7 @@ form input {
   background: #FAFAFA;
   align-self: center;
   margin-left: 40px;
+  overflow-y: scroll;
   font-size: 1.1rem;
 }
 
@@ -335,8 +318,9 @@ footer {
 }
 
 .wrapper {
-  width: 80%;
+  width: 90%;
   margin: 0 auto;
+  max-width: 1600px;
 }
 
 header {
@@ -345,4 +329,26 @@ header {
   background-size: cover;
   height: 120vh;
   z-index: 999;
+}
+
+@media (max-width: 1159px) {
+    .gallery-field .card-info {
+      padding: 0;
+    }
+
+    .title-info-container {
+      left: 50vw;
+    }
+}
+
+@media (max-width: 1106px) {
+  .wrapper {
+    width: 95%;
+  }
+}
+
+@media (max-width: 936px) {
+  .wrapper {
+    width: 100%;
+  }
 }
