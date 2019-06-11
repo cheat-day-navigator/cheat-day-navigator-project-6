@@ -13,10 +13,15 @@ import ItemCardDetails from "./ItemCardDetails.js"
 class Dropdown extends Component {
     constructor(props) {
         super(props);
+
+        this.handleClick = this.handleClick.bind(this);
+        this.handleOutsideClick = this.handleOutsideClick.bind(this);
+
         this.state = {
             listOpen: false,
-            compareOpen: false
+            compareOpen: false, 
         }
+        
     }
 
     componentDidMount() {
@@ -37,12 +42,33 @@ class Dropdown extends Component {
         });
     }
 
+    handleClick() {
+        if (!this.state.listOpen) {
+            // attach/remove event handler
+            document.addEventListener('click', this.handleOutsideClick, false);
+        } else {
+            document.removeEventListener('click', this.handleOutsideClick, false);
+        }
 
-    openDropdown = () => {
-        this.setState({
-            listOpen: !this.state.listOpen
-        })
+        this.setState(prevState => ({
+            listOpen: !prevState.listOpen,
+        }))
     }
+
+    handleOutsideClick(e) {
+        // ignore clicks on the component itself
+        if (this.node.contains(e.target)) {
+            return;
+        }
+        this.handleClick();
+    }
+
+
+    // openDropdown = () => {
+    //     this.setState({
+    //         listOpen: !this.state.listOpen
+    //     })
+    // }
 
     openCompare = () => {
         this.setState({
@@ -52,24 +78,26 @@ class Dropdown extends Component {
 
     render() {
         return (
-            <ul className="menu" >
-                <li><button onClick={this.openCompare}>Compare List</button><div className="counter"><p>{this.state.comparedItems && this.state.comparedItems.length}</p></div></li>
-                {this.state.compareOpen ?
-                    <ul className="drop-down compared-items">
-                        {this.state.comparedItems.map((item) => {
-                            return (
-                                <li>{item.tag_name}</li>
-                            )
-                        })}
-                        <li><button onClick={this.props.onCompareClick} className="compare-btn">Compare!</button></li>
-                    </ul> : null}
-                <li><button onClick={this.openDropdown}>Saved Items</button><div className="counter"><p>{this.props.savedItems && this.props.savedItems.length}</p></div></li>
-                {this.state.listOpen ?
-                    <ul className="drop-down">
-                        <Route path="/" render={() => { return (<DropdownLinks links={this.props.savedItems} />) }} />
-                    </ul>
-                    : null}
-            </ul>
+            <div ref={node => {this.node = node;}}>
+                <ul className="menu" >
+                    <li><button onClick={this.openCompare}>Compare List</button><div className="counter"><p>{this.state.comparedItems && this.state.comparedItems.length}</p></div></li>
+                    {this.state.compareOpen ?
+                        <ul className="drop-down compared-items">
+                            {this.state.comparedItems.map((item) => {
+                                return (
+                                    <li>{item.tag_name}</li>
+                                )
+                            })}
+                            <li><button onClick={this.props.onCompareClick} className="compare-btn">Compare!</button></li>
+                        </ul> : null}
+                    <li><button onClick={this.handleClick}>Saved Items</button><div className="counter"><p>{this.props.savedItems && this.props.savedItems.length}</p></div></li>
+                    {this.state.listOpen ?
+                        <ul className="drop-down">
+                            <Route path="/" render={() => { return (<DropdownLinks links={this.props.savedItems} handleClick={this.handleClick} />) }} />
+                        </ul>
+                        : null}
+                </ul>
+            </div>
         )
     }
 }
