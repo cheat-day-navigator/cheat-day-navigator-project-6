@@ -301,6 +301,7 @@ form input {
   background: #FAFAFA;
   align-self: center;
   margin-left: 40px;
+  overflow-y: scroll;
 }
 
 .nutrition-card h2 {

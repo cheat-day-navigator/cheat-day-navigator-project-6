@@ -1,12 +1,16 @@
 import React from 'react';
 import Dropdown from './Dropdown.js';
+import { tsPropertySignature } from '@babel/types';
 
-const Header = () => {
+const Header = (props) => {
     return (
         <header>
             <nav>
                 <h4>Superfood Navigation</h4>
-                <Dropdown />
+                <Dropdown
+                    onCompareClick={props.onCompareClick}
+                    compareList={props.compareList}
+                />
             </nav>
             <div className="title-container">
                 <h1>Superfood Navigation
