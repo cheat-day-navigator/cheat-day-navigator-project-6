@@ -166,8 +166,10 @@ class NutritionCard extends Component {
                           )}
                         </ul>
                       </div>
+                      <div>
                       <button onClick={this.handleSaveItem} className="save-item-btn" id={i} value={common.tag_name} data-id={this.generateFirebaseId(common.tag_name)}>{this.checkDuplicates(common.tag_name) ? 'Unsave Item' : 'Save Item'}</button>
                       <button className="compare-btn" onClick={this.addToCompare} id={i} value={common.tag_name}>Add to Compare List</button>
+                      </div>
                     </div>
                   </div>
                 </div>
