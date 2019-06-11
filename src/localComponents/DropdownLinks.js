@@ -7,7 +7,7 @@ const DropdownLinks = (props) => {
         <ul>
             {props.links && props.links.map((item) => {
                 return(
-                    <li><Link to ={`/${item.tag_id}`}>{item.food_name}</Link></li>
+                    <li onClick={props.handleClick}><Link to ={`/${item.tag_id}`}>{item.food_name}</Link></li>
                 )
             })}
         </ul>

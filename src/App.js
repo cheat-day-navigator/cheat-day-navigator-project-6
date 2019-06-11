@@ -136,7 +136,7 @@ class App extends Component {
             callbackHell={this.callBackFirebase}
             savedItems={this.state.savedItems}
           />
-          <main className="wrapper">
+          <main>
             <InputForm
               data={this.callBackData}
               toggleCard={this.showNutritionCard}
