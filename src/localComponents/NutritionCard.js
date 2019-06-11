@@ -144,7 +144,7 @@ class NutritionCard extends Component {
                 return capturedNutrients
               })
               return (
-                <div className="wrapper">
+                <div className="inner-card">
                   <div className="card-info">
                     <div className="item-card" key={`${common.tag_id}-${i}`}>
                       <img src={common.photo.thumb} alt="" />

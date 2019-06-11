@@ -107,7 +107,7 @@ class App extends Component {
         <Header
           onCompareClick={this.showCompareResult}
         />
-        <main className="wrapper">
+        <main>
           <InputForm
             data={this.callBackData}
             toggleCard={this.showNutritionCard}
