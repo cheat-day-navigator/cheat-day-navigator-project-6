@@ -40,7 +40,6 @@ const ResultsPaginator = (props) => {
             </div>
           )
         })}
-        <button onClick={props.readMoreToggle}>Read More</button>
       </div>
     )
   } else { return null }

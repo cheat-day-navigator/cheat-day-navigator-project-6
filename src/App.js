@@ -115,7 +115,7 @@ class App extends Component {
           onCompareClick={this.showCompareResult}
           callbackHell = {this.callBackFirebase}
         />
-        <main className="wrapper">
+        <main>
           <InputForm
             data={this.callBackData}
             toggleCard={this.showNutritionCard}

@@ -13,8 +13,8 @@ const SimpleCards = (props) => {
           generateFirebaseId={props.generateFirebaseId}
           checkDuplicates={props.checkDuplicates}
           addToCompare={props.addToCompare}
-          readMoreToggle={props.readMoreToggle}
           detailed={props.detailed} />
+        <button onClick={props.readMoreToggle}>More details</button>
       </React.Fragment>
     )
   } else { return null }
