@@ -233,6 +233,11 @@
   padding: 40px;
 }
 
+.inner-card {
+  width: 90%;
+  margin: 0 auto;
+}
+
 
 @media (min-width: 960px) {
   .carousel .control-dots {
@@ -270,4 +275,21 @@
 }
 .carousel:hover .slide .legend {
   opacity: 1;
+}
+
+
+@media (max-width: 821px) {
+  .carousel .slide {
+    height: 1100px;
+  }
+
+  .carousel .control-dots .dot {
+    display: none;
+  }
+}
+
+@media (max-width: 430px) {
+  .carousel .slide {
+    height: 1200px;
+  }
 }
