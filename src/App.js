@@ -24,7 +24,8 @@ class App extends Component {
       loading: false,
       dropdownItems: [],
       showCompare: false,
-      compareList: []
+      compareList: [],
+      savedItems: []
     }
   }
 
@@ -72,6 +73,25 @@ class App extends Component {
         compareList
       })
     })
+    this.registerSavedItemsListener();
+  }
+
+  // creates ref to firebase and listens for value changes to the saved items node
+  registerSavedItemsListener = () => {
+    const dbRef = firebase.database().ref('savedItems/');
+    dbRef.on('value', (response) => {
+      console.log('got saved Items value', response)
+      const savedItems = [];
+      const data = response.val();
+
+      for (let key in data) {
+        savedItems.push(data[key])
+      }
+
+      this.setState({
+        savedItems
+      })
+    });
   }
 
   showCompareResult = () => {
@@ -106,43 +126,48 @@ class App extends Component {
   render() {
     return (
       <Router>
-      <div className="App">
-        {this.state.loading === true ?
-          <LoadingModal />
-          : null}
-        {/* {console.log(this.state.macroNutrients)} */}
-        <Header
-          onCompareClick={this.showCompareResult}
-          callbackHell = {this.callBackFirebase}
-        />
-        <main>
-          <InputForm
-            data={this.callBackData}
-            toggleCard={this.showNutritionCard}
-            value={this.state.userInput}
-            loading={this.loadHandler}
+        <div className="App">
+          {this.state.loading === true ?
+            <LoadingModal />
+            : null}
+          {/* {console.log(this.state.macroNutrients)} */}
+          <Header
+            onCompareClick={this.showCompareResult}
+            callbackHell={this.callBackFirebase}
+            savedItems={this.state.savedItems}
           />
-          <Route path ="/:tagID" render = { (props) => { return (
-          <ItemCardDetails 
-            {...props}
-            details={this.state.dropdownItems}
+          <main className="wrapper">
+            <InputForm
+              data={this.callBackData}
+              toggleCard={this.showNutritionCard}
+              value={this.state.userInput}
+              loading={this.loadHandler}
+            />
+            <Route path="/:tagID" render={(props) => {
+              console.log('details', this.state.savedItems)
+              const selectedItem = this.state.savedItems.find((key) => key.tag_id === props.match.params.tagID)
+              console.log('selected item', selectedItem)
+              return (
+                selectedItem ? <ItemCardDetails
+                  {...props}
+                  item={selectedItem}
+                /> : null)
+            }} />
+          </main>
+          {this.state.nutritionVisible ? <NutritionCard
+            commonData={this.state.nutriData.common}
+            brandedData={this.state.nutriData.branded}
+            value={this.state.userInput}
             nutrients={this.state.macroNutrients}
-          />)}}/>
-        </main>
-        {this.state.nutritionVisible ? <NutritionCard
-          commonData={this.state.nutriData.common}
-          brandedData={this.state.nutriData.branded}
-          value={this.state.userInput}
-          nutrients={this.state.macroNutrients}
-        /> : null}
-        {this.state.showCompare ?
-          <CompareCard
-            compareList={this.state.compareList}
-            nutrients={this.state.macroNutrients}
-          /> : null
-        }
-        <Footer />
-      </div>
+          /> : null}
+          {this.state.showCompare ?
+            <CompareCard
+              compareList={this.state.compareList}
+              nutrients={this.state.macroNutrients}
+            /> : null
+          }
+          <Footer />
+        </div>
       </Router>
     );
   }
