@@ -9,17 +9,30 @@ class NutritionCard extends Component {
     this.state = {
       nutrientValues: [
         { attr_id: 208 }, // calories
-        { attr_id: 204 }, // fats
         { attr_id: 205 }, // carbs
+        { attr_id: 204 }, // fats
+        { attr_id: 203 }, // proteins
+        { attr_id: 307 }, // sodium
         { attr_id: 269 }, // sugars
+        { attr_id: 301 }, // calcium
         { attr_id: 318 }, // vitA
-        { attr_id: 324 }, // vitD
         { attr_id: 415 }, // vitB6
         { attr_id: 401 }, // vitC
+        { attr_id: 324 }, // vitD
         { attr_id: 323 }, // vitE
+        { attr_id: 303 }, // iron
         { attr_id: 304 }, // magnesium
-        { attr_id: 309 }, // zinc
-        { attr_id: 303 } // iron
+        { attr_id: 309 } // zinc
+      ],
+      nutrientValuesSimple: [
+        { attr_id: 318 }, // vitA
+        { attr_id: 415 }, // vitB6
+        { attr_id: 401 }, // vitC
+        { attr_id: 324 }, // vitD
+        { attr_id: 323 }, // vitE
+        { attr_id: 303 }, // iron
+        { attr_id: 304 }, // magnesium
+        { attr_id: 309 } // zinc
       ],
       itemList: [],
       compareList: [],
@@ -38,8 +51,14 @@ class NutritionCard extends Component {
       currVal = processInfo(this.state.nutrientValues[i].attr_id)
       newVals[i] = { attr_id: currVal.attr_id, usda_nutr_desc: currVal.usda_nutr_desc, unit: currVal.unit }
     }
+    let newVals2 = []
+    for (let i = 0; i < this.state.nutrientValuesSimple.length; i++) {
+      currVal = processInfo(this.state.nutrientValuesSimple[i].attr_id)
+      newVals2[i] = { attr_id: currVal.attr_id, usda_nutr_desc: currVal.usda_nutr_desc, unit: currVal.unit }
+    }
     this.setState({
-      nutrientValues: newVals
+      nutrientValues: newVals,
+      nutrientValuesSimple: newVals2
     })
     this.retrieveCompareList();
   }
@@ -152,6 +171,7 @@ class NutritionCard extends Component {
         <div className="wrapper">
           <SimpleCards
             commonData={this.props.commonData}
+            nutrientValues={this.state.nutrientValuesSimple}
             handleSaveItem={this.handleSaveItem}
             generateFirebaseId={this.generateFirebaseId}
             checkDuplicates={this.checkDuplicates}
