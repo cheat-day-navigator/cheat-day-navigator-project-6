@@ -70,8 +70,7 @@ class CompareCard extends Component {
                                             return null
                                         } else {
                                             return (
-
-                                                <li><p>{console.log(this.state.nutrientValues)}{this.state.nutrientValues[id].usda_nutr_desc}</p><p>{n.value.toFixed(2)} {this.state.nutrientValues[id].unit}</p></li>
+                                                <li><p>{this.state.nutrientValues[id].usda_nutr_desc}</p><p>{n.value.toFixed(2)} {this.state.nutrientValues[id].unit}</p></li>
                                             )
                                         }
                                     }
