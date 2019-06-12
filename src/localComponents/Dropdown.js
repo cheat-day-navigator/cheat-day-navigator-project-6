@@ -88,7 +88,7 @@ class Dropdown extends Component {
                                     <li>{item.tag_name}</li>
                                 )
                             })}
-                            <li><button onClick={this.props.onCompareClick} className="compare-btn">Compare!</button></li>
+                            <li><button onClick={this.props.onCompareClick} handleClick={this.handleClick} className="compare-btn">Compare!</button></li>
                         </ul> : null}
                     <li><button onClick={this.handleClick}>Saved Items</button><div className="counter"><p>{this.props.savedItems && this.props.savedItems.length}</p></div></li>
                     {this.state.listOpen ?
