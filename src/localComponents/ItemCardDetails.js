@@ -32,6 +32,7 @@ class ItemCardDetails extends Component {
         this.setState({
             loading: true
         })
+        // making the API call to extract the macroNutrients
         MakeCall('macroNutrients').then((response) => {
             let nutrients = this.extractNutrients(response)
             console.log('data loaded', nutrients)
@@ -45,6 +46,7 @@ class ItemCardDetails extends Component {
             this.setState({
                 loading: false
             })
+            // if there is an error the loading screen will continue
             return Swal.fire({
                 title: 'Uh oh!',
                 text: `Something happened on our end! Please try reloading!`,
@@ -52,6 +54,7 @@ class ItemCardDetails extends Component {
                 confirmButtonText: 'Okay'
             })
         })
+        // error handling with sweet alerts is user input is incorrect
 
 
 
@@ -59,17 +62,21 @@ class ItemCardDetails extends Component {
 
     extractNutrients(macroNutrients) {
         let nutrients = []
+        // creating an empty array to set state with
         console.log('macronutrientS', macroNutrients)
         for (let i = 0; i < this.state.nutrientValues.length; i++) {
             let nutrientId = this.state.nutrientValues[i].attr_id;
             console.log(nutrientId, 'nutrient id')
+            // looping over nutrients values and grabbing the attribute ID
             let macroNutrient = macroNutrients.find((item) => item.attr_id === nutrientId)
+            // finding each item and seeing if attribute ID matches nutrient ID
             console.log('macronutrient', macroNutrient)
             nutrients.push({
                 attr_id: macroNutrient.attr_id,
                 usda_nutr_desc: macroNutrient.usda_nutr_desc,
                 unit: macroNutrient.unit
             })
+            // pusing the values to see the empty array
         }
         return nutrients
     }

@@ -24,20 +24,27 @@ class Dropdown extends Component {
         
     }
 
+
     componentDidMount() {
 
         const compareRef = firebase.database().ref('comparedItems/');
+        // creating a compare variable to send to firebase
         compareRef.on('value', (response) => {
             const comparedItems = [];
+            // setting an empty array for the compared items to update state
             const data = response.val();
+            // getting the value of the response paramater
 
             for (let key in data) {
                 comparedItems.push(data[key])
             }
+            // pushing the compared items to the array along with a key identifer
 
             this.setState({
                 comparedItems
             })
+
+            // setting state with the compared items
 
         });
     }
@@ -62,13 +69,6 @@ class Dropdown extends Component {
         }
         this.handleClick();
     }
-
-
-    // openDropdown = () => {
-    //     this.setState({
-    //         listOpen: !this.state.listOpen
-    //     })
-    // }
 
     openCompare = () => {
         this.setState({
