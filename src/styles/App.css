@@ -1,10 +1,41 @@
 .App,
 html {
-  background: #FAFAFA;
+  background: #f1fae8;
 }
 
 .App {
   text-align: center;
+}
+
+ul button:hover {
+  color: #9f2718;
+}
+
+main button:hover {
+  background: #ffd134;
+  color: black;
+}
+
+
+a {
+  text-decoration: none;
+}
+
+footer a {
+  color: #9f2718;
+}
+
+footer a:hover {
+  text-decoration: underline;
+}
+
+ul a,
+.drop-down li {
+  color: #f1fae8;
+}
+
+ul a:hover {
+  color: #ffd134;
 }
 
 h1,
@@ -65,48 +96,6 @@ header {
   background-color: rgba(100, 0, 0, 0.6);
 }
 
-.title-info-container h3 {
-  position: relative;
-  margin-left: 20px;
-}
-
-.lines {
-  position: absolute;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-}
-
-.top-lines {
-  align-items: flex-end;
-  top: -140px;
-  right: -125px;
-  width: 150px;
-  height: 150px;
-  transform: rotate(45deg);
-}
-
-.bottom-lines {
-  top: 275px;
-  left: 100px;
-  width: 200px;
-  height: 200px;
-  
-}
-
-.bar {
-  width: 20px;
-  height: 100%;
-}
-
-.line1 {
-  height: 50%;
-}
-
-.line2 {
-  height: 75%;
-}
-
 nav {
   background: #ffd134;
   z-index: 1;
@@ -130,6 +119,7 @@ ul button {
 }
 
 ul.saved-items {
+  height: 300px;
   top: 60px;
   right: 60px;
   max-height: 200px;
@@ -148,7 +138,22 @@ ul.compared-items li:last-of-type{
   
 }
 
+.btn {
+  background: none;
+  width: 100%;
+  padding: 0 10px 0;
+  margin: 0;
+  color: black;
+}
+
+.compare-btn2 {
+  padding: 0;
+  margin: 0 auto;
+  color: black;
+}
+
 ul.drop-down {
+  text-align: left;
   position: absolute;
   background: #9f2718;
   color: #FAFAFA;
@@ -263,7 +268,7 @@ main {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 100px;
+  padding: 100px 0;
 }
 
 form {
@@ -285,12 +290,12 @@ form input {
 }
 
 .nutrition-card {
-  width: 80%;
+  width: 100%;
   text-align: left;
   border: 2px solid black;
   background: #FAFAFA;
   align-self: center;
-  margin-left: 40px;
+  margin: 0 auto;
   overflow-y: scroll;
   font-size: 1.1rem;
 }
@@ -434,7 +439,7 @@ footer {
 }
 
 
-@media (max-width: 557px) {
+@media only screen and (max-width: 557px) {
     .title-container {
       padding-top: 60px;
       margin: 0 auto;
@@ -462,17 +467,17 @@ footer {
     }
 
     .item-card .save-item-btn {
-       margin-bottom: 10px;
+      margin-bottom: 10px;
     }
 }
 
-@media (max-width: 475px) {
+@media only screen and (max-width: 475px) {
     .title-container {
       width: auto;
     }
 
     .item-card {
-      width: 250px;
+      margin: 0 auto;
     }
     
     header {
@@ -484,7 +489,7 @@ footer {
     }
 }
 
-@media (max-width: 430px) {
+@media only screen and (max-width: 430px) {
     h1 {
       font-size: 2.5rem;
     }
@@ -511,7 +516,7 @@ footer {
   
 }
 
-@media (max-width: 337px) {
+@media only screen and (max-width: 337px) {
   h1 {
     font-size: 2rem;
   }

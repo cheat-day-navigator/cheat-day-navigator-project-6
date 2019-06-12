@@ -19,9 +19,9 @@ class Dropdown extends Component {
 
         this.state = {
             listOpen: false,
-            compareOpen: false, 
+            compareOpen: false,
         }
-        
+
     }
 
     componentDidMount() {
@@ -78,9 +78,9 @@ class Dropdown extends Component {
 
     render() {
         return (
-            <div ref={node => {this.node = node;}}>
+            <div ref={node => { this.node = node; }}>
                 <ul className="menu" >
-                    <li><button onClick={this.openCompare}>Compare List</button><div className="counter"><p>{this.state.comparedItems && this.state.comparedItems.length}</p></div></li>
+                    <li><button className="compare-btn btn" onClick={this.openCompare}>Compare List</button><div className="counter"><p>{this.state.comparedItems && this.state.comparedItems.length}</p></div></li>
                     {this.state.compareOpen ?
                         <ul className="drop-down compared-items">
                             {this.state.comparedItems.map((item) => {
@@ -88,11 +88,11 @@ class Dropdown extends Component {
                                     <li>{item.tag_name}</li>
                                 )
                             })}
-                            <li><button onClick={this.props.onCompareClick} className="compare-btn">Compare!</button></li>
+                            <li><button onClick={this.props.onCompareClick} className="compare-btn2">Compare!</button></li>
                         </ul> : null}
-                    <li><button onClick={this.handleClick}>Saved Items</button><div className="counter"><p>{this.props.savedItems && this.props.savedItems.length}</p></div></li>
+                    <li><button className="save-btn btn" onClick={this.handleClick}>Saved Items</button><div className="counter"><p>{this.props.savedItems && this.props.savedItems.length}</p></div></li>
                     {this.state.listOpen ?
-                        <ul className="drop-down">
+                        <ul className="drop-down saved-items">
                             <Route path="/" render={() => { return (<DropdownLinks links={this.props.savedItems} handleClick={this.handleClick} />) }} />
                         </ul>
                         : null}
