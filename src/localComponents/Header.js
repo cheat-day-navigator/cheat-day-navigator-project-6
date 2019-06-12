@@ -10,7 +10,7 @@ const Header = (props) => {
     return (
         <header>
             <nav>
-                <h4>Superfood Navigation</h4>
+                <h4><a href="">Superfood Navigation</a></h4>
                 <Dropdown
                     callback={callback}
                     onCompareClick={props.onCompareClick}
