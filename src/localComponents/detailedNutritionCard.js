@@ -2,6 +2,7 @@ import React from 'react'
 import { Carousel } from 'react-responsive-carousel';
 import "./../styles/carousel.css";
 
+// creating a simple component that will render all the nutrition information
 const DetailedCards = (props) => {
   if (props.detailed) {
     return (

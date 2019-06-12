@@ -75,11 +75,13 @@ class NutritionCard extends Component {
     }
   }
 
+// creating a function that will retreive our saved items in firebase
   retrieveFirebase = () => {
     const dbRef = firebase.database().ref('savedItems/');
     dbRef.on('value', (response) => {
       const itemList = [];
       const data = response.val();
+      // creating an empty array to update state with
 
       for (let key in data) {
         itemList.push({
@@ -87,6 +89,7 @@ class NutritionCard extends Component {
           firebaseId: key
         })
       }
+      // pushing specific key and tag name to the itemList array
 
       this.setState({
         itemList
@@ -94,6 +97,7 @@ class NutritionCard extends Component {
     })
   }
 
+  // creating a function that will check the index of each item name
   checkDuplicates = (item) => {
     const simpleArr = this.state.itemList.map(item => {
       return item.name
@@ -104,6 +108,7 @@ class NutritionCard extends Component {
     }
   }
 
+// creating a function to check the firebase ID and the index of each item
   generateFirebaseId = (item) => {
     const simpleArr = this.state.itemList.map(item => {
       return item.name
@@ -121,7 +126,9 @@ class NutritionCard extends Component {
     dbRef.on('value', (response) => {
       const compareList = [];
       const data = response.val();
+      // creating a empty array to set state with using the compared items
 
+      // pushing specific key of compared data to new array
       for (let key in data) {
         compareList.push({
           data: data[key]
@@ -137,6 +144,7 @@ class NutritionCard extends Component {
   addToCompare = (e) => {
     e.preventDefault();
     const position = e.target.id
+    // creating a variable to access the id of compared item
     const dbRef = firebase.database().ref(`comparedItems/`)
     if (this.state.compareList.length < 2) {
       dbRef.push(this.props.commonData[position]);
@@ -151,6 +159,8 @@ class NutritionCard extends Component {
     e.preventDefault();
     const position = e.target.id;
     const item = e.target.value;
+
+    // creating variables to access the value and id of saved items
 
     const isDuplicate = this.checkDuplicates(item)
 

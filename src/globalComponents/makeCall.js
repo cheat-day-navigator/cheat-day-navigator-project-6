@@ -11,6 +11,8 @@ const MakeCall = (searchtype = `simpleSearch`, appQuery = `chicken nuggets`) => 
   let methodType = `GET` // Defaulting API method to GET
   let parameters = {} // Determining which params (if applicable) to add to API call
 
+
+// creating a variable for sweet alert
   const warningFire = (warning) => {
     Swal.fire({
       title: 'Oops!',
@@ -19,6 +21,7 @@ const MakeCall = (searchtype = `simpleSearch`, appQuery = `chicken nuggets`) => 
       confirmButtonText: 'Okay'
     })
   }
+
 
   if (searchtype === `macroNutrients`) { // Macronutrient call
     urlType = `https://trackapi.nutritionix.com/v2/utils/nutrients`
@@ -39,6 +42,7 @@ const MakeCall = (searchtype = `simpleSearch`, appQuery = `chicken nuggets`) => 
     console.log(`Invalid or missing searchtype prop. Make sure your first prop when using MakeCall() is either 'macroNutrients', 'simpleSearch', or 'readMore'!`)
   }
 
+  // axios call to the API using the API key and ID
   return (
     axios({
       method: methodType,
