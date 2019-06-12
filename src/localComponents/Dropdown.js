@@ -1,10 +1,7 @@
 import React, { Component } from 'react';
 import firebase from './../globalComponents/firebase.js';
 import {
-    // BrowserRouter as Router,
-    Route,
-    // Link,
-    // NavLink
+    Route
 } from 'react-router-dom';
 import DropdownLinks from "./DropdownLinks.js";
 import ItemCardDetails from "./ItemCardDetails.js"

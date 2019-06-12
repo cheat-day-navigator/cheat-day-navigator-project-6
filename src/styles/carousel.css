@@ -254,6 +254,26 @@
   margin: 0 auto;
 }
 
+@media only screen and (max-width: 580px) {
+  .carousel .nutrition-card {
+    margin-left: 0;
+  }
+}
+
+@media only screen and (max-width: 580px) {
+  .carousel .nutrition-card {
+    width: 90%;
+  }
+
+  .carousel .card-info img {
+    position: relative;
+    right: 20px;
+    margin-left: 0;
+    width: 90%;
+  }
+}
+
+
 
 @media (min-width: 960px) {
   .carousel .control-dots {
