@@ -2,6 +2,7 @@ import React from 'react';
 import {Link} from 'react-router-dom';
 // import ItemCardDetails from './ItemCardDetails';
 
+// creating a function that will bring in the food name and tag id when clicked
 const DropdownLinks = (props) => {
     return(
         <ul>

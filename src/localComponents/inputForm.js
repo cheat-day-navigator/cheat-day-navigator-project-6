@@ -12,11 +12,13 @@ class InputForm extends Component {
       userInput: ''
     }
   }
+  // creating an empty string where user input will go
 
   handleKeyPress = (e) => {
     if (e.which === 13) {
       this.handleClick(e)
     }
+    // using e.which to see whick key was pressed
   }
 
   // Binding the user's input to create controlled information
@@ -29,6 +31,7 @@ class InputForm extends Component {
   clearForm = () => {
     document.getElementById('main-form').reset();
   }
+  // resetting the form
 
   // Create an event listener for user input
   handleClick = (event) => {
@@ -36,12 +39,14 @@ class InputForm extends Component {
     this.props.loading(true)
     const dbRef = firebase.database().ref("searchresults/");
     dbRef.push(this.state.userInput)
+    // using firebase to push user input entered
     MakeCall('simpleSearch', this.state.userInput).then(result => {
       let queryResult = result
       if (queryResult.common.length > 0) {
         this.setState({ data: queryResult }, () => {
           this.props.toggleCard();
         })
+        // making the API call and setting objects with user input
         this.props.data(queryResult)
       } else {
         this.clearForm();
@@ -64,6 +69,7 @@ class InputForm extends Component {
 
   render() {
     return (
+      // main form that will handle our user input
       <form id="main-form">
         <label htmlFor="search">Look up your favourite foods and find the nutrient information!</label>
         <input type="text" id="search" placeholder="e.g. Chicken nuggets" onChange={this.handleChange} onKeyDown={this.handleKeyPress} />

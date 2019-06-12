@@ -24,22 +24,27 @@ class CompareCard extends Component {
     }
 
     componentDidMount() {
+        // creating an empty array with variable newList
         const newList = []
         const compareList = this.props.compareList
 
+        // pushing each argument to the array with specific value
         compareList.forEach(function (element) {
             newList.push(element)
         })
 
+        // setting state with the new array
         this.setState({
             newList
         })
 
+        // using the props to find a specific id for each nutrient
         const processInfo = (id) => {
             return this.props.nutrients.find((i) => i.attr_id === id)
         }
         let currVal
         let newVals = []
+        // looping over the nutrtient values and pushing it to the new array
         for (let i = 0; i < this.state.nutrientValues.length; i++) {
             currVal = processInfo(this.state.nutrientValues[i].attr_id)
             newVals[i] = { attr_id: currVal.attr_id, usda_nutr_desc: currVal.usda_nutr_desc, unit: currVal.unit }
@@ -57,9 +62,11 @@ class CompareCard extends Component {
                     let thisValues = this.state.nutrientValues.map((n, id) => {
                         let capturedNutrients = element.data.full_nutrients.find((key) => key.attr_id === n.attr_id)
                         return capturedNutrients
+                        // mapping over the newList array and capturing the specific key for that nutrient
                     })
                     return (
                         <div>
+                            {/* displaying the values on the page with nutrition information */}
                             <div className="nutrition-card">
                                 <h2>{element && element.data.tag_name}</h2>
                                 <h3>Nutrition Facts</h3>
