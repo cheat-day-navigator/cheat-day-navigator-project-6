@@ -230,12 +230,23 @@
   bottom: 0;
   margin: 10px 0;
   text-align: center;
-  width: 100%;
+  /* width: 100%; */
+  max-width: 950px;
 }
 
 .card-info {
   border: 10px solid #ffd134;
   padding: 40px;
+}
+.card-info .nutrition-card {
+  margin-left: 60px;
+  padding: 10px;
+}
+
+@media only screen and (max-width: 500px) {
+  .card-info {
+    padding: 20px;
+  }
 }
 
 .inner-card {

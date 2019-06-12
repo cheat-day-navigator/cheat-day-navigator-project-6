@@ -133,10 +133,9 @@ class App extends Component {
           {/* {console.log(this.state.macroNutrients)} */}
           <Header
             onCompareClick={this.showCompareResult}
-            callbackHell={this.callBackFirebase}
             savedItems={this.state.savedItems}
           />
-          <main>
+          <main className="wrapper">
             <InputForm
               data={this.callBackData}
               toggleCard={this.showNutritionCard}
